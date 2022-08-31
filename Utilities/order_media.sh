@@ -1,9 +1,6 @@
 #!/bin/bash
 
-#inputdir=/media/pi/7A81-86F7/Ownuse/RashmiLive
-#outputdir=/media/pi/7A81-86F7/Ownuse/Personal/Ordered
-
-#./order_media.sh /media/pi/7A81-86F7/Ownuse/NewSyncRashmi /media/pi/7A81-86F7/Ownuse/Personal/Ordered
+#./order_media.sh /media/pi/src_dir /media/pi/dest_dir
 
 inputdir=$1
 outputdir=$2
