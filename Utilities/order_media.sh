@@ -9,7 +9,7 @@ filenames=($(find $inputdir -maxdepth 1 -type f -exec echo "{}" \; | grep -Ei ".
 
 for (( idx=0 ; idx<${#filenames[@]} ; idx++ ));
 do
-    mnthyr=$(ffprobe -v quiet -show_format ${filenames[$idx]} | grep -Eoi "creation_time=[0-9][0-9][0-9][0-9]-[0-9][0-9]" | grep -Eoi "[0-9][0-9][0-9][0-9]-[0-9][0-9]" | tail -1)
+    mnthyr=$(ffprobe -v quiet -show_format ${filenames[$idx]} | grep -Eoi "creation_time=[0-9]{4}-[0-9]{2}" | grep -Eoi "[0-9]{4}-[0-9]{2}" | tail -1)
 
 
     if [[ "$mnthyr" == "" ]]
@@ -30,7 +30,7 @@ filenames=($(find $inputdir -maxdepth 1 -type f -exec echo "{}" \; | grep -Ei ".
 
 for (( idx=0 ; idx<${#filenames[@]} ; idx++ ));
 do
-    mnthyr=$(exiftool ${filenames[$idx]} | grep -Eio "Create Date.*" | grep -Eio "[0-9][0-9][0-9][0-9]:[0-9][0-9]" | tr ':' '-' | tail -1)
+    mnthyr=$(exiftool ${filenames[$idx]} | grep -Eio "Create Date.*" | grep -Eio "[0-9]{4}:[0-9]{2}" | tr ':' '-' | tail -1)
 
 
     if [[ "$mnthyr" == "" ]]
