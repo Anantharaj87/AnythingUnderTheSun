@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Table({handleChange, theadData, tbodyData}) {
+export default function PrintableTable({theadData, tbodyData}) {
 
 /*  const [parameterData, setParameterData] = useState(tbodyData)
 
@@ -17,7 +17,13 @@ export default function Table({handleChange, theadData, tbodyData}) {
     console.log('editData', editData)
 
     setParameterData(editData)
-  } */
+  } 
+
+if (key == "parametervalue" && row[key]) {
+                        	
+			}
+
+*/
 
  return (
    <table>
@@ -30,23 +36,16 @@ export default function Table({handleChange, theadData, tbodyData}) {
        </thead>
        <tbody>
            {tbodyData.map((row, index) => {
+
+		if (row["parametervalue"]) {
                return <tr key={index}>
                    {theadData.map((key, index) => {
-			if (key != "parametervalue") {
-                        	return <td key={row[key]}>{row[key]}</td>
-			} else {
-				return (<td>
-					<input
-					  name="parametervalue"
-					  value={row["parametervalue"]}
-					  type="text"
-					  onChange={(e) => handleChange(e, row["parameter"])}
-					  placeholder="parameter value"
-					/>
-				      </td>)
-			}
+			return <td key={row[key]}>{row[key]}</td>;
                    })}
              </tr>;
+}
+
+
            })}
        </tbody>
    </table>

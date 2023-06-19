@@ -1,25 +1,10 @@
 import { useState } from 'react'
 
-export default function Table({handleChange, theadData, tbodyData}) {
-
-/*  const [parameterData, setParameterData] = useState(tbodyData)
-
-  const onChangeInput = (e, parameter) => {
-    const { name, value } = e.target
-    console.log('name', name)
-    console.log('value', value)
-    console.log('parameter', parameter)
-
-    const editData = parameterData.map((item) => 
-    item.parameter === parameter && name ? { ...item, [name]: value } : item      
-    )
-
-    console.log('editData', editData)
-
-    setParameterData(editData)
-  } */
+export default function ReportInputTable({handleChange, handleBranchChange, handleGroupChange, theadData, tbodyData}) {
 
  return (
+<div>
+
    <table>
        <thead>
           <tr>
@@ -50,5 +35,6 @@ export default function Table({handleChange, theadData, tbodyData}) {
            })}
        </tbody>
    </table>
+</div>
 );
 }
