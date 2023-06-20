@@ -2,23 +2,6 @@ import { useState } from 'react'
 
 export default function Table({handleChange, theadData, tbodyData}) {
 
-/*  const [parameterData, setParameterData] = useState(tbodyData)
-
-  const onChangeInput = (e, parameter) => {
-    const { name, value } = e.target
-    console.log('name', name)
-    console.log('value', value)
-    console.log('parameter', parameter)
-
-    const editData = parameterData.map((item) => 
-    item.parameter === parameter && name ? { ...item, [name]: value } : item      
-    )
-
-    console.log('editData', editData)
-
-    setParameterData(editData)
-  } */
-
  return (
    <table>
        <thead>
@@ -33,12 +16,13 @@ export default function Table({handleChange, theadData, tbodyData}) {
                return <tr key={index}>
                    {theadData.map((key, index) => {
 			if (key != "parametervalue") {
-                        	return <td key={row[key]}>{row[key]}</td>
+                        	return <td key={index}>{row[key]}</td>
 			} else {
-				return (<td>
+				return (<td key={index}>
 					<input
+					key={index}
 					  name="parametervalue"
-					  value={row["parametervalue"]}
+					  defaultValue={row["parametervalue"]}
 					  type="text"
 					  onChange={(e) => handleChange(e, row["parameter"])}
 					  placeholder="parameter value"

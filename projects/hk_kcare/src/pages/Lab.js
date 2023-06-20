@@ -12,8 +12,10 @@ function Lab(props) {
     console.log("hello " + e.target);
 } */
 
+  //const [parameterData, setParameterData] = useState(props.labparamsinfo.tests.map(item => ({...item, parametervalue:undefined})));
 
-  const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
+const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
+
   const [selectedBranch, setBranch] = useState("");
   const [selectedGroup, setGroup] = useState("");
 
@@ -35,8 +37,9 @@ function Lab(props) {
   const handleBranchChange = (e) => {
     const { name, value } = e.target
 
+/*console.log("brr");
 console.log(name);
-console.log(value);
+console.log(value);*/
 
     setBranch(value);
   } 
@@ -44,7 +47,11 @@ console.log(value);
   const handleGroupChange = (e, group) => {
     const { name, value } = e.target
 
-    setGroup(group);
+/*console.log("grr");
+console.log(name);
+console.log(value);*/
+
+    setGroup(value);
   } 
 
 
@@ -66,8 +73,7 @@ console.log(value);
     <div>
 	<button onClick={(e) => onClick(e, this)}>Save as PDF</button>
 
-
-<ReportSpecificInputTable handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} tbodyData={props.labparamsinfo.tests} />
+<ReportSpecificInputTable handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} parameterData={parameterData} setParameterData={setParameterData} selectedBranch={selectedBranch} setBranch={setBranch} selectedGroup={selectedGroup} setGroup={setGroup} />
     </div>
   );
 }
