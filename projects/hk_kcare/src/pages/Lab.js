@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Table from "./Table";
 import PrintableTable from "./PrintableTable";
 import ReportInputTable from "./ReportInputTable";
+import ReportSpecificInputTable from "./ReportSpecificInputTable";
 
 function Lab(props) {
 
@@ -13,8 +14,8 @@ function Lab(props) {
 
 
   const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
-  const [getBranch, setBranch] = useState("");
-  const [getGroup, setGroup] = useState("");
+  const [selectedBranch, setBranch] = useState("");
+  const [selectedGroup, setGroup] = useState("");
 
   const handleChange = (e, parameter) => {
     const { name, value } = e.target
@@ -31,10 +32,13 @@ function Lab(props) {
     setParameterData(editData)
   } 
 
-  const handleBranchChange = (e, branch) => {
+  const handleBranchChange = (e) => {
     const { name, value } = e.target
 
-    setBranch(branch);
+console.log(name);
+console.log(value);
+
+    setBranch(value);
   } 
 
   const handleGroupChange = (e, group) => {
@@ -61,9 +65,9 @@ function Lab(props) {
   return (
     <div>
 	<button onClick={(e) => onClick(e, this)}>Save as PDF</button>
-        <Table handleChange={handleChange} theadData={["branch", "group", "parameter", "parametervalue"]} tbodyData={props.labparamsinfo.tests} />
 
-//<ReportInputTable handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["branch", "group", "parameter", "parametervalue"]} tbodyData={props.labparamsinfo.tests} />
+
+<ReportSpecificInputTable handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} tbodyData={props.labparamsinfo.tests} />
     </div>
   );
 }

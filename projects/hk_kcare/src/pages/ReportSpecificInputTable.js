@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-export default function ReportInputTable({handleChange, handleBranchChange, handleGroupChange, theadData, tbodyData}) {
+export default function ReportSpecificInputTable({handleChange, handleBranchChange, handleGroupChange, theadData, tbodyData}) {
 
 const getDistinctBranches = () => {
 	return tbodyData.map(item => item.branch)
@@ -43,30 +43,80 @@ getDistinctBranches().forEach((branch, index) => {
 }); */
 
 
+const [selectedLocalBranch, setLocalBranch] = useState("");
+const [selectedLocalGroup, setLocalGroup] = useState("");
+const [selectedLocalBranchGroups, setLocalBranchGroups] = useState([]);
+const [pickedParams, setPickedParams] = useState([]);
 
+  const handleBranchChangeLocal = (e) => {
 
+    console.log("local branch");
+    const { name, value } = e.target
+    setLocalBranch(value);
 
+    handleBranchChange(e);
+  }
 
+  const handleGroupChangeLocal = (e) => {
+
+    console.log("local group");
+    const { name, value } = e.target
+    setLocalGroup(value);
+
+    handleGroupChange(e);
+  }
+
+useEffect(() => {
+	setLocalBranch(getDistinctBranches()[0]);
+
+}, []);
+
+useEffect(() => {
+	let curgrp = getDistinctGroups(selectedLocalBranch);
+
+	setLocalBranchGroups(curgrp);
+	setLocalGroup(curgrp[0]);
+
+}, [selectedLocalBranch]);
+
+useEffect(() => {
+	setPickedParams(getParams(selectedLocalBranch, selectedLocalGroup));
+
+}, [selectedLocalGroup]);
+
+//setLocalBranch(getDistinctBranches()[0]);
 
  return (
 <div>
-{
 
-getDistinctBranches().map((branch, index) => {
- return (
-	<div>
-		<h1 key={branch}>{branch}</h1>
-		{
+<select name="branchselector" value={selectedLocalBranch} onChange={(e) => handleBranchChangeLocal(e)}>
+    {
+
+	getDistinctBranches().map((branch, index) => {
+		return <option key={index} value={branch}>{branch}</option>;
+	    })
+
+}
+</select>
+
+<select name="groupselector" value={selectedLocalGroup} onChange={(e) => handleGroupChangeLocal(e)}>
+    {
+
+	selectedLocalBranchGroups.map((group, index) => {
+		return <option key={index} value={group}>{group}</option>;
+	    })
+
+}
+</select>
 
 
-		getDistinctGroups(branch).map((group, index) => {
-			return (
-				<div>
-					<h2>{group}</h2>
-					
 
 
-					<table>
+
+
+
+
+<table>
 						<thead>
 							<tr>
 								{theadData.map(heading => {
@@ -75,7 +125,7 @@ getDistinctBranches().map((branch, index) => {
 							</tr>
 						</thead>
 						<tbody>
-						   {getParams(branch, group).map((row, index) => {
+						   {pickedParams.map((row, index) => {
 						       return <tr key={index}>
 							   {theadData.map((key, index) => {
 								if (key != "parametervalue") {
@@ -109,22 +159,6 @@ getDistinctBranches().map((branch, index) => {
 
 
 
-				</div>
-				)
-		})
-
-
-
-
-
-
-		}
-	</div>
-	)
-})
-
-
-}
 </div>
 )
 }
