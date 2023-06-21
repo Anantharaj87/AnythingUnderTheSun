@@ -26,7 +26,7 @@ export default function Table({handleChange, theadData, tbodyData}) {
 					  type="text"
 					  onChange={(e) => handleChange(e, row["parameter"])}
 					  placeholder="parameter value"
-					/>
+					/> {row["ref"]?(row["ref"]["unit"]?row["ref"]["unit"]:""):""}
 				      </td>)
 			}
                    })}

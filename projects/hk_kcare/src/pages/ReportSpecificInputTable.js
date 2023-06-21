@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Table from "./Table";
 
-export default function ReportSpecificInputTable({handleChange, handleBranchChange, handleGroupChange, theadData, parameterData, setParameterData, selectedBranch, setBranch, selectedGroup, setGroup}) {
+export default function ReportSpecificInputTable({handleChange, handleBranchChange, handleGroupChange, theadData, parameterData, setParameterData, selectedBranch, setBranch, selectedGroup, setGroup, patientInfo, updatePatientInfo}) {
 
 const getDistinctBranches = () => {
 	return parameterData.map(item => item.branch)
@@ -62,44 +62,89 @@ useEffect(() => {
 }, [selectedBranch]);
 
 useEffect(() => {
-console.log(selectedBranch);
-console.log(selectedGroup);
-console.log(getParams(selectedBranch, selectedGroup));
-
 	setPickedParams(getParams(selectedBranch, selectedGroup));
 
-	console.log(pickedParams);
 	setChildKey(prev => prev + 1);
 	
 }, [selectedGroup]);
 
  return (
 <div>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td>
+						<input
+						  name="name"
+						  defaultValue={patientInfo.name}
+						  type="text"
+						  onChange={(e) => updatePatientInfo(e)}
+						/>
+					</td>
+					<td>Age:</td>
+					<td>
+						<input
+						  name="age"
+						  defaultValue={patientInfo.age}
+						  type="text"
+						  onChange={(e) => updatePatientInfo(e)}
+						/>
+					</td>
+				</tr>
+				<tr>
+					<td>Sex:</td>
+					<td>
+						<input
+						  name="sex"
+						  defaultValue={patientInfo.sex}
+						  type="text"
+						  onChange={(e) => updatePatientInfo(e)}
+						/>
+					</td>
+					<td>Sample No:</td>
+					<td>
+						<input
+						  name="sampleno"
+						  defaultValue={patientInfo.sampleno}
+						  type="text"
+						  onChange={(e) => updatePatientInfo(e)}
+						/>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br />
+	<div>
 
-<select name="branchselector" value={selectedBranch} onChange={(e) => handleBranchChange(e)}>
-    {
+		<select name="branchselector" value={selectedBranch} onChange={(e) => handleBranchChange(e)}>
+		    {
 
-	getDistinctBranches().map((branch, index) => {
-		return <option key={index} value={branch}>{branch}</option>;
-	    })
+			getDistinctBranches().map((branch, index) => {
+				return <option key={index} value={branch}>{branch}</option>;
+			    })
 
-}
-</select>
+		}
+		</select>
 
-<select name="groupselector" value={selectedGroup} onChange={(e) => handleGroupChange(e)}>
-    {
+		<select name="groupselector" value={selectedGroup} onChange={(e) => handleGroupChange(e)}>
+		    {
 
-	selectedLocalBranchGroups.map((group, index) => {
-		return <option key={index} value={group}>{group}</option>;
-	    })
+			selectedLocalBranchGroups.map((group, index) => {
+				return <option key={index} value={group}>{group}</option>;
+			    })
 
-}
-</select>
-
-
-<Table key={childKey} handleChange={handleChange} theadData={theadData} tbodyData={pickedParams} />
+		}
+		</select>
 
 
+		<Table key={childKey} handleChange={handleChange} theadData={theadData} tbodyData={pickedParams} />
+
+
+	</div>
 </div>
 )
 }

@@ -1,31 +1,28 @@
 
-export default function PrintableReportTable({
-    theadData,
-    tbodyData
-}) {
+export default function PrintableReportTable({theadData, tbodyData, patientInfo}) {
 
     const getDistinctBranches = () => {
         return tbodyData.map(item => item.branch)
             .filter((item, index, arr) => arr.indexOf(item) === index)
-    };
+    }
 
     const getDistinctGroups = (branch) => {
         return tbodyData.filter((item, index, arr) => {
             return item.branch === branch;
         }).map(item => item.group).filter((item, index, arr) => arr.indexOf(item) === index)
-    };
+    }
 
     const getParams = (branch, group) => {
         return tbodyData.filter((item, index, arr) => {
             return item.branch === branch && item.group === group;
         })
-    };
+    }
 
     const hasParametersPopulatedForBranch = (branch) => {
         return tbodyData.filter((item, index, arr) => {
             return item.branch === branch;
         }).filter((item, index, arr) => item.parametervalue && item.parametervalue !== "" && item.parametervalue !== null).length > 0;
-    };
+    }
 
 
     const hasParametersPopulatedForBranchGroup = (branch, group) => {
@@ -34,8 +31,36 @@ export default function PrintableReportTable({
         }).filter((item, index, arr) => {
             return item.group === group;
         }).filter((item, index, arr) => item.parametervalue && item.parametervalue !== "" && item.parametervalue !== null).length > 0;
-    };
+    }
 
+const computeCellValue = (row, key) => {
+	if (key == "parametervalue") {
+		return row[key] + " " + (row["ref"]?(row["ref"]["unit"]?row["ref"]["unit"]:""):"");
+	} else if (key == "ref") {
+		let refval = "";
+
+		if(row["ref"]) {
+			if (row["ref"]["range"]) {
+				if (row["ref"]["range"]["min"] && row["ref"]["range"]["max"]) {
+					refval = row["ref"]["range"]["min"] + " - " + row["ref"]["range"]["max"];
+					refval += (row["ref"]["unit"]?(" "+row["ref"]["unit"]):"");
+				} else if (row["ref"]["range"]["min"]) {
+					refval = ">" + row["ref"]["range"]["min"];
+					refval += (row["ref"]["unit"]?(" "+row["ref"]["unit"]):"");
+				} else if (row["ref"]["range"]["max"]) {
+					refval = "<" + row["ref"]["range"]["max"];
+					refval += (row["ref"]["unit"]?(" "+row["ref"]["unit"]):"");
+				} else {
+				}
+			}
+		}
+
+		return refval;
+	} else {
+		return row[key];
+	}
+
+}
 
     return (
 <div>
@@ -43,21 +68,24 @@ export default function PrintableReportTable({
 		<table>
 			<tbody>
 				<tr>
-					<td>Name:</td>
-					<td>Age:</td>
-					<td>Sex:</td>
+					<td>Name: {patientInfo.name}</td>
+					<td>Age: {patientInfo.age}</td>
+					<td>Sex: {patientInfo.sex}</td>
 				</tr>
 				<tr>
-					<td>Sample No:</td>
-					<td>Date:</td>
+					<td>Sample No: {patientInfo.sampleno}</td>
+					<td>Date: {(new Date()).toString()}</td>
 				</tr>
+			</tbody>
+		</table>
+		<br />
+		<h1>LABORATORY REPORT</h1>
+		<table>
+			<tbody>
 				<tr>
-					<td>LABORATORY REPORT</td>
-				</tr>
-				<tr>
-					<td>Test Name</td>
-					<td>Results</td>
-					<td>Reference Level</td>
+					<td>TEST NAME</td>
+					<td>RESULTS/UNITS</td>
+					<td>REFERENCE VALUE</td>
 				</tr>
 			</tbody>
 		</table>
@@ -98,7 +126,7 @@ export default function PrintableReportTable({
 								            return <tr key = {index}> 
 										{
 								                    theadData.map((key, index) => {
-								                        return <td key = {index} > {row[key]} </td>
+								                        return <td key = {index} > {computeCellValue(row, key)} </td> 
 								                    })
 								                }
 								                </tr>

@@ -37,43 +37,47 @@ const [childKey, setChildKey] = useState(0);
   const handleBranchChange = (e) => {
     const { name, value } = e.target
 
-/*console.log("brr");
-console.log(name);
-console.log(value);*/
-
     setBranch(value);
   } 
 
   const handleGroupChange = (e, group) => {
     const { name, value } = e.target
 
-/*console.log("grr");
-console.log(name);
-console.log(value);*/
-
     setGroup(value);
   } 
 
 
+const [patientInfo, setPatientInfo] = useState({name: "", age: 0, sex: "", sampleno: 0});
 
+const updatePatientInfo = (e) => {
+const { name, value } = e.target
+
+	setPatientInfo(prev => {
+		return {...prev, [name]: value}
+	});
+
+	console.log(patientInfo);
+}
 
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
 
-		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue"]} tbodyData={parameterData} />);
+		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
 
 		html2pdf().from(printElement).save();
 
 		setParameterData(props.labparamsinfo.tests);
+		setPatientInfo({name: "", age: 0, sex: "", sampleno: 0});
 
 		setChildKey(prev => prev + 1);
 	}
 
   return (
     <div>
-	<button onClick={(e) => onClick(e, this)}>Save as PDF</button>
+	<ReportSpecificInputTable key={childKey} handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} parameterData={parameterData} setParameterData={setParameterData} selectedBranch={selectedBranch} setBranch={setBranch} selectedGroup={selectedGroup} setGroup={setGroup} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo}/>
 
-<ReportSpecificInputTable key={childKey} handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} parameterData={parameterData} setParameterData={setParameterData} selectedBranch={selectedBranch} setBranch={setBranch} selectedGroup={selectedGroup} setGroup={setGroup} />
+<br />
+	<button onClick={(e) => onClick(e, this)}>Generate Report</button>
     </div>
   );
 }
