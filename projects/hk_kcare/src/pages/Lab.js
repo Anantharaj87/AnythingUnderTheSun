@@ -5,6 +5,7 @@ import Table from "./Table";
 import PrintableTable from "./PrintableTable";
 import ReportInputTable from "./ReportInputTable";
 import ReportSpecificInputTable from "./ReportSpecificInputTable";
+import PrintableReportTable from "./PrintableReportTable";
 
 function Lab(props) {
 
@@ -12,12 +13,11 @@ function Lab(props) {
     console.log("hello " + e.target);
 } */
 
-  //const [parameterData, setParameterData] = useState(props.labparamsinfo.tests.map(item => ({...item, parametervalue:undefined})));
-
 const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
 
   const [selectedBranch, setBranch] = useState("");
   const [selectedGroup, setGroup] = useState("");
+const [childKey, setChildKey] = useState(0);
 
   const handleChange = (e, parameter) => {
     const { name, value } = e.target
@@ -60,20 +60,20 @@ console.log(value);*/
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
 
-		//html2pdf().from("<p>hi</p>").save();
-
-		const printElement = ReactDOMServer.renderToString(<PrintableTable theadData={["branch", "group", "parameter", "parametervalue"]} tbodyData={parameterData} />);
-
-		//const printElement = ReactDOMServer.renderToString(this);
+		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue"]} tbodyData={parameterData} />);
 
 		html2pdf().from(printElement).save();
+
+		setParameterData(props.labparamsinfo.tests);
+
+		setChildKey(prev => prev + 1);
 	}
 
   return (
     <div>
 	<button onClick={(e) => onClick(e, this)}>Save as PDF</button>
 
-<ReportSpecificInputTable handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} parameterData={parameterData} setParameterData={setParameterData} selectedBranch={selectedBranch} setBranch={setBranch} selectedGroup={selectedGroup} setGroup={setGroup} />
+<ReportSpecificInputTable key={childKey} handleChange={handleChange} handleBranchChange={handleBranchChange} handleGroupChange={handleGroupChange} theadData={["parameter", "parametervalue"]} parameterData={parameterData} setParameterData={setParameterData} selectedBranch={selectedBranch} setBranch={setBranch} selectedGroup={selectedGroup} setGroup={setGroup} />
     </div>
   );
 }

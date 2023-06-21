@@ -79,12 +79,12 @@ getDistinctBranches().map((branch, index) => {
 						       return <tr key={index}>
 							   {theadData.map((key, index) => {
 								if (key != "parametervalue") {
-									return <td key={row[key]}>{row[key]}</td>
+									return <td key={index}>{row[key]}</td>
 								} else {
-									return (<td key={row[key]}>
+									return (<td key={index}>
 										<input
 										  name="parametervalue"
-										  value={row["parametervalue"]}
+										  defaultValue={row["parametervalue"]}
 										  type="text"
 										  onChange={(e) => handleChange(e, row["parameter"])}
 										  placeholder="parameter value"
