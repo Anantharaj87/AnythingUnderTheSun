@@ -38,6 +38,31 @@ export default function PrintableReportTable({
 
 
     return (
+<div>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td>Age:</td>
+					<td>Sex:</td>
+				</tr>
+				<tr>
+					<td>Sample No:</td>
+					<td>Date:</td>
+				</tr>
+				<tr>
+					<td>LABORATORY REPORT</td>
+				</tr>
+				<tr>
+					<td>Test Name</td>
+					<td>Results</td>
+					<td>Reference Level</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
         <div> {
 
             getDistinctBranches().map((branch, index) => {
@@ -104,5 +129,6 @@ export default function PrintableReportTable({
         }
 
         </div>
+</div>
     )
 }
