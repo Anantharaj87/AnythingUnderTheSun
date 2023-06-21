@@ -1,4 +1,3 @@
-import {useState} from 'react'
 
 export default function PrintableReportTable({
     theadData,
@@ -12,54 +11,29 @@ export default function PrintableReportTable({
 
     const getDistinctGroups = (branch) => {
         return tbodyData.filter((item, index, arr) => {
-            return item.branch == branch;
+            return item.branch === branch;
         }).map(item => item.group).filter((item, index, arr) => arr.indexOf(item) === index)
-    };
-
-    const getDistinctParams = (branch, group) => {
-        return tbodyData.filter((item, index, arr) => {
-            return item.branch == branch;
-        }).filter((item, index, arr) => {
-            return item.group == group;
-        }).map(item => item.parameter).filter((item, index, arr) => arr.indexOf(item) === index)
     };
 
     const getParams = (branch, group) => {
         return tbodyData.filter((item, index, arr) => {
-            return item.branch == branch && item.group == group;
+            return item.branch === branch && item.group === group;
         })
     };
 
-    /* getDistinctGroups("clinicalpathology").forEach((group, index1) => {
-    		console.log(group);
-    	});
-
-
-    getDistinctBranches().forEach((branch, index) => {
-    	console.log(branch);
-    	getDistinctGroups(branch).forEach((group, index) => {
-    		console.log("	" + group);
-    		getDistinctParams(branch, group).forEach((param, index) => {
-    			console.log("		" + param);
-    		});
-    	});
-    }); */
-
-
-
     const hasParametersPopulatedForBranch = (branch) => {
         return tbodyData.filter((item, index, arr) => {
-            return item.branch == branch;
-        }).filter((item, index, arr) => item.parametervalue && item.parametervalue != "" && item.parametervalue != null).length > 0;
+            return item.branch === branch;
+        }).filter((item, index, arr) => item.parametervalue && item.parametervalue !== "" && item.parametervalue !== null).length > 0;
     };
 
 
     const hasParametersPopulatedForBranchGroup = (branch, group) => {
         return tbodyData.filter((item, index, arr) => {
-            return item.branch == branch;
+            return item.branch === branch;
         }).filter((item, index, arr) => {
-            return item.group == group;
-        }).filter((item, index, arr) => item.parametervalue && item.parametervalue != "" && item.parametervalue != null).length > 0;
+            return item.group === group;
+        }).filter((item, index, arr) => item.parametervalue && item.parametervalue !== "" && item.parametervalue !== null).length > 0;
     };
 
 
@@ -77,7 +51,7 @@ export default function PrintableReportTable({
 				    {
 				        getDistinctGroups(branch).map((group, index) => {
 
-if (hasParametersPopulatedForBranchGroup(branch, group)) {
+					if (hasParametersPopulatedForBranchGroup(branch, group)) {
 				            return (
 				                <div>
 
@@ -103,7 +77,9 @@ if (hasParametersPopulatedForBranchGroup(branch, group)) {
 								                    })
 								                }
 								                </tr>
-								        }
+								        } else {
+										return;
+									}
 								    })
 								}
 								</tbody>
@@ -112,14 +88,16 @@ if (hasParametersPopulatedForBranchGroup(branch, group)) {
 				                </div>
 				            )
 
-}
+					} else {
+						return;
+					}
 				        })
 
 				    } 
 		            </div>
 		        )
 
-		}
+		} else { return;}
 
             })
 
