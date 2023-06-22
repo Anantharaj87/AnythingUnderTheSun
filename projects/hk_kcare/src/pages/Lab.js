@@ -47,7 +47,7 @@ const [childKey, setChildKey] = useState(0);
   } 
 
 
-const [patientInfo, setPatientInfo] = useState({name: "", age: 0, sex: "", sampleno: 0});
+const [patientInfo, setPatientInfo] = useState({name: "", age: "", sex: "", sampleno: ""});
 
 const updatePatientInfo = (e) => {
 const { name, value } = e.target
@@ -67,7 +67,7 @@ const { name, value } = e.target
 		html2pdf().from(printElement).save();
 
 		setParameterData(props.labparamsinfo.tests);
-		setPatientInfo({name: "", age: 0, sex: "", sampleno: 0});
+		setPatientInfo({name: "", age: "", sex: "", sampleno: ""});
 
 		setChildKey(prev => prev + 1);
 	}

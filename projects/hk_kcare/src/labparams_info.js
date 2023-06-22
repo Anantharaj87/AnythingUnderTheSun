@@ -3,7 +3,7 @@ const labparams_info = {
     "tests": [{
         "branch": "hematology",
         "group": "complete blood count",
-        "parameter": "haemoglobin",
+        "parameter": "Haemoglobin",
         "ref": {
             "range": {
                 "min": 12,
@@ -14,7 +14,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "complete blood count",
-        "parameter": "total rbc count",
+        "parameter": "Total RBC count",
         "ref": {
             "range": {
                 "min": 3.8,
@@ -25,7 +25,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "complete blood count",
-        "parameter": "pcv",
+        "parameter": "PCV",
         "ref": {
             "range": {
                 "min": 36,
@@ -36,7 +36,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "complete blood count",
-        "parameter": "total wbc count",
+        "parameter": "Total WBC count",
         "ref": {
             "range": {
                 "min": 4000,
@@ -47,7 +47,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "neutrophils",
+        "parameter": "Neutrophils",
         "ref": {
             "range": {
                 "min": 40,
@@ -58,7 +58,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "lymphocytes",
+        "parameter": "Lymphocytes",
         "ref": {
             "range": {
                 "min": 20,
@@ -69,7 +69,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "mixed cells",
+        "parameter": "Mixed cells",
         "ref": {
             "range": {
                 "min": 2,
@@ -80,7 +80,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "mcv",
+        "parameter": "MCV",
         "ref": {
             "range": {
                 "min": 83,
@@ -91,7 +91,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "mch",
+        "parameter": "MCH",
         "ref": {
             "range": {
                 "min": 27,
@@ -102,7 +102,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "mchc",
+        "parameter": "MCHC",
         "ref": {
             "range": {
                 "min": 32,
@@ -113,7 +113,7 @@ const labparams_info = {
     }, {
         "branch": "hematology",
         "group": "differential count",
-        "parameter": "platelet count",
+        "parameter": "Platelet count",
         "ref": {
             "range": {
                 "min": 150000,
@@ -124,7 +124,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "blood grouping and typing",
-        "parameter": "blood sugar (random)",
+        "parameter": "Blood sugar (Random)",
         "ref": {
             "range": {
                 "min": 70,
@@ -135,7 +135,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "blood grouping and typing",
-        "parameter": "blood sugar (fasting)",
+        "parameter": "Blood sugar (Fasting)",
         "ref": {
             "range": {
                 "min": 70,
@@ -146,7 +146,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "blood grouping and typing",
-        "parameter": "blood sugar (post prandial)",
+        "parameter": "Blood sugar (Post prandial)",
         "ref": {
             "range": {
                 "min": 100,
@@ -157,7 +157,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "blood grouping and typing",
-        "parameter": "hba1c",
+        "parameter": "HbA1C",
         "ref": {
             "range": {
                 "min": 0,
@@ -168,7 +168,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "blood urea",
+        "parameter": "Blood Urea",
         "ref": {
             "range": {
                 "min": 15,
@@ -179,7 +179,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum creatinine",
+        "parameter": "Serum Creatinine",
         "ref": {
             "range": {
                 "min": 0.6,
@@ -190,7 +190,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum sodium",
+        "parameter": "Serum Sodium",
         "ref": {
             "range": {
                 "min": 135,
@@ -201,7 +201,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum potassium",
+        "parameter": "Serum Potassium",
         "ref": {
             "range": {
                 "min": 3.5,
@@ -212,7 +212,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum chloride",
+        "parameter": "Serum Chloride",
         "ref": {
             "range": {
                 "min": 98,
@@ -223,7 +223,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum bicarbonate",
+        "parameter": "Serum Bicarbonate",
         "ref": {
             "range": {
                 "min": 22,
@@ -234,7 +234,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum calcium",
+        "parameter": "Serum Calcium",
         "ref": {
             "range": {
                 "min": 8.6,
@@ -245,7 +245,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum phosphorus",
+        "parameter": "Serum Phosphorus",
         "ref": {
             "range": {
                 "min": 2.5,
@@ -256,7 +256,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
-        "parameter": "serum uric acid",
+        "parameter": "Serum Uric Acid",
         "ref": {
             "range": {
                 "min": 3.5,
@@ -267,7 +267,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "bilirubin total",
+        "parameter": "Bilirubin Total",
         "ref": {
             "range": {
                 "min": 0.3,
@@ -278,7 +278,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "bilirubin direct",
+        "parameter": "Bilirubin Direct",
         "ref": {
             "range": {
                 "min": 0,
@@ -289,7 +289,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "bilirubin indirect",
+        "parameter": "Bilirubin Indirect",
         "ref": {
             "range": {
                 "min": 0,
@@ -300,7 +300,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "sgot",
+        "parameter": "SGOT",
         "ref": {
             "range": {
                 "min": 0,
@@ -311,7 +311,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "sgpt",
+        "parameter": "SGPT",
         "ref": {
             "range": {
                 "min": 0,
@@ -322,7 +322,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "alkaline phosphatase",
+        "parameter": "Alkaline Phosphatase",
         "ref": {
             "range": {
                 "min": 0,
@@ -333,7 +333,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "total protein",
+        "parameter": "Total Protein",
         "ref": {
             "range": {
                 "min": 6,
@@ -344,7 +344,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
-        "parameter": "albumin",
+        "parameter": "Albumin",
         "ref": {
             "range": {
                 "min": 4.5,
@@ -355,7 +355,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "total cholesterol",
+        "parameter": "Total Cholesterol",
         "ref": {
             "range": {
                 "min": 120,
@@ -366,7 +366,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "triglycerides",
+        "parameter": "Triglycerides",
         "ref": {
             "range": {
                 "min": 130,
@@ -377,7 +377,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "ldl cholesterol",
+        "parameter": "LDL Cholesterol",
         "ref": {
             "range": {
                 "min": 0,
@@ -388,7 +388,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "hdl cholesterol",
+        "parameter": "HDL Cholesterol",
         "ref": {
             "range": {
                 "min": 55
@@ -398,7 +398,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "vldl cholesterol",
+        "parameter": "VLDL cholesterol",
         "ref": {
             "range": {
                 "min": 10,
@@ -409,7 +409,7 @@ const labparams_info = {
     }, {
         "branch": "serology",
         "group": "na",
-        "parameter": "hiv - i & ii (rapid card test)",
+        "parameter": "HIV - I & II (Rapid card test)",
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
@@ -417,7 +417,7 @@ const labparams_info = {
     }, {
         "branch": "serology",
         "group": "na",
-        "parameter": "hbsag (rapid card test)",
+        "parameter": "HBsAg (Rapid card test)",
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
@@ -425,7 +425,7 @@ const labparams_info = {
     }, {
         "branch": "serology",
         "group": "na",
-        "parameter": "hcv (rapid card test)",
+        "parameter": "HCV (Rapid card test)",
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
@@ -433,72 +433,72 @@ const labparams_info = {
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "colour"
+        "parameter": "Colour"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "reaction"
+        "parameter": "Reaction"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "ph"
+        "parameter": "pH"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "specific gravity"
+        "parameter": "Specific gravity"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "albumin"
+        "parameter": "Albumin"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "glucose"
+        "parameter": "Glucose"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "bile salt"
+        "parameter": "Bile salt"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "bile pigment"
+        "parameter": "Bile pigment"
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "ketone"
+        "parameter": "Ketone"
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "rbc",
+        "parameter": "RBC",
         "ref": {
             "unit": "hpf"
         }
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "pus cells",
+        "parameter": "Pus cells",
         "ref": {
             "unit": "hpf"
         }
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "epithelial cells",
+        "parameter": "Epithelial cells",
         "ref": {
             "unit": "hpf"
         }
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "casts"
+        "parameter": "Casts"
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "crystals"
+        "parameter": "Crystals"
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "bacteria"
+        "parameter": "Bacteria"
     }]
 }
 

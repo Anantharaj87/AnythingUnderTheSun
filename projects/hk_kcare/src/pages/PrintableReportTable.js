@@ -62,10 +62,23 @@ const computeCellValue = (row, key) => {
 
 }
 
+const formattedDate = () => {
+	var date = new Date();
+	var dateStr =
+	  ("00" + date.getDate()).slice(-2) + "/" +
+	  ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+	  date.getFullYear() + " " +
+	  ("00" + date.getHours()).slice(-2) + ":" +
+	  ("00" + date.getMinutes()).slice(-2) + ":" +
+	  ("00" + date.getSeconds()).slice(-2);
+
+	return dateStr;
+}
+
     return (
-<div>
+<div style={{'margin': '20px'}}>
 	<div>
-		<table>
+		<table className="table">
 			<tbody>
 				<tr>
 					<td>Name: {patientInfo.name}</td>
@@ -74,13 +87,13 @@ const computeCellValue = (row, key) => {
 				</tr>
 				<tr>
 					<td>Sample No: {patientInfo.sampleno}</td>
-					<td>Date: {(new Date()).toString()}</td>
+					<td>Date: {formattedDate()}</td>
 				</tr>
 			</tbody>
 		</table>
 		<br />
-		<h1>LABORATORY REPORT</h1>
-		<table>
+		<h2 style={{'text-align': 'center'}}>LABORATORY REPORT</h2>
+		<table className="table">
 			<tbody>
 				<tr>
 					<td>TEST NAME</td>
@@ -99,7 +112,7 @@ const computeCellValue = (row, key) => {
 			return (
 		            <div>
 
-				    <h1 key={index}> {branch} </h1>
+				    <h3 key={index} className="text-center"> {branch.toUpperCase()} </h3>
 
 				    {
 				        getDistinctGroups(branch).map((group, index) => {
@@ -108,9 +121,9 @@ const computeCellValue = (row, key) => {
 				            return (
 				                <div>
 
-				                	<h2 key={index}> {group} < /h2>
+				                	<h4 key={index}> {(group==="na")?"":group.toUpperCase()} < /h4>
 				                
-						        <table>
+						        <table className="table">
 								<thead>
 								<tr> {
 								    theadData.map(heading => {
