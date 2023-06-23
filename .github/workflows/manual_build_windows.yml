@@ -29,3 +29,12 @@ jobs:
       run: npm ci --verbose
       
     - run: npm run make-win32
+    
+    - run: Compress-Archive -Path './projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination './projects/hk_kcare/out/hk_kcare.zip'
+   
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: '["./projects/hk_kcare/out/hk_kcare.zip"]'
+        message: 'Manual build for Run ${{ github.run_id }}'
+        push: true
