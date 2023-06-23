@@ -5,6 +5,7 @@ on:
   
 env:
   NODE_VERSION: '14.x'
+  CI: false
   
 jobs:
   build:
@@ -27,4 +28,4 @@ jobs:
     - name: Install node modules
       run: npm ci --verbose
       
-    - run: CI=false npm run build
+    - run: npm run build
