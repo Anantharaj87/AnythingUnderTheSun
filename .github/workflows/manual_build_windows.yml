@@ -38,3 +38,8 @@ jobs:
         add: '["./projects/hk_kcare/out/hk_kcare.zip"]'
         message: 'Manual build for Run ${{ github.run_id }}'
         push: true
+        
+    - uses: actions/upload-artifact@v3
+      with:
+        name: hk_kcare_app
+        path: "./projects/hk_kcare/out/hk_kcare.zip"
