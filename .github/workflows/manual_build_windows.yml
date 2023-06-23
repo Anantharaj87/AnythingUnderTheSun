@@ -30,16 +30,16 @@ jobs:
       
     - run: npm run make-win32
     
-    - run: Compress-Archive -Path 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare.zip'
+    - run: Compress-Archive -Path 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare.zip'
    
     - name: Commit and push
       uses: EndBug/add-and-commit@v7
       with:
-        add: '["D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare.zip"]'
+        add: '["D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare.zip"]'
         message: 'Manual build for Run ${{ github.run_id }}'
         push: true
         
     - uses: actions/upload-artifact@v3
       with:
         name: hk_kcare_app
-        path: 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare.zip'
+        path: 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare.zip'
