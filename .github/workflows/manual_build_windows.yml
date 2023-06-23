@@ -30,16 +30,16 @@ jobs:
       
     - run: npm run make-win32
     
-    - run: Compress-Archive -Path 'C:/Users/RUNNER~1/AppData/Local/Temp/electron-packager/win32-x64/hk_kcare-win32-x64/*' -Destination './projects/hk_kcare/out/hk_kcare.zip'
+    - run: Compress-Archive -Path './out/hk_kcare-win32-x64/*' -Destination './out/hk_kcare.zip'
    
     - name: Commit and push
       uses: EndBug/add-and-commit@v7
       with:
-        add: '["./projects/hk_kcare/out/hk_kcare.zip"]'
+        add: '["./out/hk_kcare.zip"]'
         message: 'Manual build for Run ${{ github.run_id }}'
         push: true
         
     - uses: actions/upload-artifact@v3
       with:
         name: hk_kcare_app
-        path: './projects/hk_kcare/out/hk_kcare.zip'
+        path: './out/hk_kcare.zip'
