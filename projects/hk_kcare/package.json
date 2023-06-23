@@ -1,7 +1,8 @@
 {
   "name": "hk_kcare",
-  "description": "A Healthcare app",
   "version": "0.1.0",
+  "description": "A Healthcare app",
+  "author": "Anantharaj",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -28,6 +29,7 @@
     "package": "react-scripts build && electron-forge package",
     "make-mac": "react-scripts build && electron-forge make --platform darwin",
     "make-linux": "react-scripts build && electron-forge make --platform linux",
+    "make-win32": "react-scripts build && electron-forge make --platform win32",
     "make": "react-scripts build && electron-forge make"
   },
   "config": {
