@@ -1,0 +1,30 @@
+name: hk_kcare_winbuild
+
+on:
+  workflow_dispatch:
+  
+env:
+  NODE_VERSION: '14.x'
+  
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: './projects/hk_kcare'
+        
+    steps:
+    
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ env.NODE_VERSION}}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION}}
+        cache: 'npm'
+        cache-dependency-path: './projects/hk_kcare/package-lock.json'
+        
+    - name: Install node modules
+      run: npm ci --verbose
+      
+    - run: npm run build
