@@ -15,7 +15,13 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "sass": "^1.63.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "concurrently": "^8.2.0",
+    "electron": "^25.1.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-prebuilt-compile": "8.2.0",
+    "react-router-dom": "^6.12.1",
+    "wait-on": "^7.0.1"
   },
   "main": "public/electron.js",
   "homepage": "./",
@@ -91,11 +97,6 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^8.2.0",
-    "electron": "^25.1.0",
-    "electron-is-dev": "^2.0.0",
-    "electron-prebuilt-compile": "8.2.0",
-    "react-router-dom": "^6.12.1",
-    "wait-on": "^7.0.1"
+
   }
 }
