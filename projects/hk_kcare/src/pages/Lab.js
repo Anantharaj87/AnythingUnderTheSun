@@ -64,7 +64,17 @@ const { name, value } = e.target
 
 		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
 
-		html2pdf().from(printElement).save();
+		var opt = {
+		    margin: [0, -0.1, 0, 0],
+		    filename: patientInfo.name + ".pdf",
+		    image: { type: "jpeg", quality: 1 },
+		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
+		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
+		    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+		  };
+
+		  html2pdf().set(opt).from(printElement).save();
+
 
 		setParameterData(props.labparamsinfo.tests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: ""});

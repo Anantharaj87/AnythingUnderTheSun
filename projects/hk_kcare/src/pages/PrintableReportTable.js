@@ -75,101 +75,69 @@ const formattedDate = () => {
 	return dateStr;
 }
 
-    return (
-<div style={{'margin': '20px'}}>
-	<div>
-		<table className="table">
-			<tbody>
-				<tr>
-					<td>Name: {patientInfo.name}</td>
-					<td>Age: {patientInfo.age}</td>
-					<td>Sex: {patientInfo.sex}</td>
-				</tr>
-				<tr>
-					<td>Sample No: {patientInfo.sampleno}</td>
-					<td>Date: {formattedDate()}</td>
-				</tr>
-			</tbody>
-		</table>
-		<br />
-		<h2 style={{'text-align': 'center'}}>LABORATORY REPORT</h2>
-		<table className="table">
-			<tbody>
-				<tr>
-					<td>TEST NAME</td>
-					<td>RESULTS/UNITS</td>
-					<td>REFERENCE VALUE</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
-        <div> {
+const prepareContent = () => {
 
-            getDistinctBranches().map((branch, index) => {
-                
+	var content = [];
+
+	content.push({td1: "Name: " + patientInfo.name, td2: "Age: " + patientInfo.age, td3: "Sex: " + patientInfo.sex});
+	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "Date: " + formattedDate(), td3: ""});
+	content.push({td1: "", td2: "LABORATORY REPORT", td3: ""});
+	content.push({td1: "TEST NAME", td2: "RESULTS/UNITS", td3: "REFERENCE VALUE"});
+
+	getDistinctBranches().map((branch, index) => {
+
 		if (hasParametersPopulatedForBranch(branch)) {
-			return (
-		            <div>
+			content.push({td1: "", td2: branch.toUpperCase(), td3: ""});
 
-				    <h3 key={index} className="text-center"> {branch.toUpperCase()} </h3>
 
-				    {
-				        getDistinctGroups(branch).map((group, index) => {
+			getDistinctGroups(branch).map((group, index) => {
 
-					if (hasParametersPopulatedForBranchGroup(branch, group)) {
-				            return (
-				                <div>
+				if (hasParametersPopulatedForBranchGroup(branch, group)) {
 
-				                	<h4 key={index}> {(group==="na")?"":group.toUpperCase()} < /h4>
-				                
-						        <table className="table">
-								<thead>
-								<tr> {
-								    theadData.map(heading => {
-								        return <th key={heading}></th>
-								    })
-								}
-								</tr>
-								</thead>
-								<tbody> {
-								    getParams(branch, group).map((row, index) => {
-
-								        if (row["parametervalue"]) {
-								            return <tr key = {index}> 
-										{
-								                    theadData.map((key, index) => {
-								                        return <td key = {index} > {computeCellValue(row, key)} </td> 
-								                    })
-								                }
-								                </tr>
-								        } else {
-										return;
-									}
-								    })
-								}
-								</tbody>
-						        </table>
-
-				                </div>
-				            )
-
-					} else {
-						return;
+					if(group !== "na") {
+						content.push({td1: group.toUpperCase(), td2: "", td3: ""});
 					}
-				        })
 
-				    } 
-		            </div>
-		        )
+					 getParams(branch, group).map((row, index) => {
 
-		} else { return;}
+						if (row["parametervalue"]) {
 
-            })
+							content.push({td1: computeCellValue(row, theadData[0]), td2: computeCellValue(row, theadData[1]), td3: computeCellValue(row, theadData[2])});
+						}
+					    })
 
-        }
+				}
 
-        </div>
-</div>
-    )
+			})
+
+		}
+
+	})
+	
+	return content;
+	}
+
+    return (
+		<div style={{'margin': '30px'}}>
+			<table className="table table-borderless">
+				<tbody>
+					
+					{
+						prepareContent().map((item, index) => {
+
+							return (<tr key = {index}> 
+									<td>{item.td1}</td>
+									<td>{item.td2}</td>
+									<td>{item.td3}</td>
+								</tr>)
+
+						})
+			 
+					}
+
+				</tbody>
+			</table>
+		</div>
+	)
 }
