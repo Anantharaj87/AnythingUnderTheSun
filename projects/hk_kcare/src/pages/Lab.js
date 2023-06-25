@@ -38,13 +38,13 @@ const [childKey, setChildKey] = useState(0);
   } 
 
 
-const [patientInfo, setPatientInfo] = useState({name: "", age: "", sex: "", sampleno: ""});
+const [patientInfo, setPatientInfo] = useState({name: "", age: "", sex: "MALE", sampleno: ""});
 
 const updatePatientInfo = (e) => {
 const { name, value } = e.target
 
 	setPatientInfo(prev => {
-		return {...prev, [name]: value}
+		return {...prev, [name]: value.toUpperCase()}
 	});
 
 	console.log(patientInfo);
@@ -56,7 +56,7 @@ const { name, value } = e.target
 		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
 
 		var opt = {
-		    margin: [0, -0.1, 0, 0],
+		    margin: props.properties.pdf_margin,
 		    filename: patientInfo.name + ".pdf",
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },

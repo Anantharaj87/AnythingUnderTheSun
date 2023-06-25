@@ -78,7 +78,7 @@ useEffect(() => {
 					<td>
 						<input
 						  name="name"
-						  defaultValue={patientInfo.name}
+						  value={patientInfo.name}
 						  type="text"
 						  onChange={(e) => updatePatientInfo(e)}
 						/>
@@ -96,12 +96,12 @@ useEffect(() => {
 				<tr>
 					<td>Sex:</td>
 					<td>
-						<input
-						  name="sex"
-						  defaultValue={patientInfo.sex}
-						  type="text"
-						  onChange={(e) => updatePatientInfo(e)}
-						/>
+						<select name="sex" value={patientInfo.sex} onChange={(e) => updatePatientInfo(e)}>
+							<option value="MALE">Male</option>
+							<option value="FEMALE">Female</option>
+							<option value="THIRDGENDER">ThirdGender</option>
+						</select>
+					
 					</td>
 					<td>Sample No:</td>
 					<td>

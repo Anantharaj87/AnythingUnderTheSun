@@ -189,7 +189,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Sodium",
         "ref": {
             "range": {
@@ -200,7 +200,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Potassium",
         "ref": {
             "range": {
@@ -211,7 +211,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Chloride",
         "ref": {
             "range": {
@@ -222,7 +222,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Bicarbonate",
         "ref": {
             "range": {
@@ -233,7 +233,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Calcium",
         "ref": {
             "range": {
@@ -244,7 +244,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Phosphorus",
         "ref": {
             "range": {
@@ -255,7 +255,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "renal function test",
+        "group": "electrolytes",
         "parameter": "Serum Uric Acid",
         "ref": {
             "range": {

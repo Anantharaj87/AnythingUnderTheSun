@@ -80,15 +80,15 @@ const prepareContent = () => {
 
 	var content = [];
 
-	content.push({td1: "Name: " + patientInfo.name, td2: "Age: " + patientInfo.age, td3: "Sex: " + patientInfo.sex});
+	content.push({td1: "Name: " + patientInfo.name, td2: "Age: " + patientInfo.age + " years", td3: "Sex: " + patientInfo.sex});
 	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "Date: " + formattedDate(), td3: ""});
-	content.push({td1: "", td2: "LABORATORY REPORT", td3: ""});
-	content.push({td1: "TEST NAME", td2: "RESULTS/UNITS", td3: "REFERENCE VALUE"});
+	content.push({td1: "", td2: "LABORATORY REPORT", td3: "", td2style: {bold: true}});
+	content.push({td1: "TEST NAME", td2: "RESULTS/UNITS", td3: "REFERENCE VALUE", td1style: {bold: true}, td2style: {bold: true}, td3style: {bold: true}});
 
 	getDistinctBranches().map((branch, index) => {
 
 		if (hasParametersPopulatedForBranch(branch)) {
-			content.push({td1: "", td2: branch.toUpperCase(), td3: ""});
+			content.push({td1: "", td2: branch.toUpperCase(), td3: "", td2style: {bold: true}});
 
 
 			getDistinctGroups(branch).map((group, index) => {
@@ -119,7 +119,7 @@ const prepareContent = () => {
 	}
 
     return (
-		<div style={{'margin': '30px'}}>
+		<div>
 			<table className="table table-borderless">
 				<tbody>
 					
@@ -127,9 +127,15 @@ const prepareContent = () => {
 						prepareContent().map((item, index) => {
 
 							return (<tr key = {index}> 
-									<td>{item.td1}</td>
-									<td>{item.td2}</td>
-									<td>{item.td3}</td>
+									<td>
+										{item.td1style && item.td1style.bold ? <b>{item.td1}</b>: <span>{item.td1}</span>}
+									</td>
+									<td>
+										{item.td2style && item.td2style.bold ? <b>{item.td2}</b>: <span>{item.td2}</span>}
+									</td>
+									<td>
+										{item.td3style && item.td3style.bold ? <b>{item.td3}</b>: <span>{item.td3}</span>}
+									</td>
 								</tr>)
 
 						})

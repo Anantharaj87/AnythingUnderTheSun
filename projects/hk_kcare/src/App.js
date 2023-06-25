@@ -11,8 +11,8 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Lab labparamsinfo={ props.labparamsinfo } />} />
-          <Route path="*" element={<Lab labparamsinfo={ props.labparamsinfo } />} />
+          <Route index element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
+          <Route path="*" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
         </Route>
       </Routes>
     </BrowserRouter>
