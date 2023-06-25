@@ -41,5 +41,5 @@ jobs:
         
     - uses: actions/upload-artifact@v3
       with:
-        name: hk_kcare_management
+        name: hk_kcare_management_windows
         path: 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare-win32-x64.zip'
