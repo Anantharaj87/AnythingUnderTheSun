@@ -30,7 +30,7 @@ jobs:
       
     - run: npm run make-win32
     
-    #- run: Compress-Archive -Path 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare_win32-x64.zip'
+    - run: Compress-Archive -Path 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare-win32-x64.zip'
    
     #- name: Commit and push
     #  uses: EndBug/add-and-commit@v7
@@ -41,5 +41,5 @@ jobs:
         
     - uses: actions/upload-artifact@v3
       with:
-        name: hk_kcare_win32-x64
-        path: 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*'
+        name: hk_kcare_management_windows
+        path: 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare-win32-x64.zip'

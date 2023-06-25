@@ -30,8 +30,9 @@ jobs:
       
     - run: npm run make-linux
     
-    #- run: Compress-Archive -Path 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-win32-x64/*' -Destination 'D:/a/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare_win32-x64.zip'
-   
+    - name: Create ankiaddon
+      run: zip -r -q '/home/runner/work/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare-linux-x64.zip' '/home/runner/work/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/out/hk_kcare-linux-x64'
+        
     #- name: Commit and push
     #  uses: EndBug/add-and-commit@v7
     #  with:
@@ -41,5 +42,5 @@ jobs:
         
     - uses: actions/upload-artifact@v3
       with:
-        name: hk_kcare_linux
-        path: './projects/hk_kcare/out/hk_kcare-linux/*'
+        name: hk_kcare_management_linux
+        path: '/home/runner/work/EverythingUnderTheSun/EverythingUnderTheSun/projects/hk_kcare/hk_kcare-linux-x64.zip'
