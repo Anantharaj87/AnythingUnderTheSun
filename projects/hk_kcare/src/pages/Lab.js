@@ -9,27 +9,18 @@ import PrintableReportTable from "./PrintableReportTable";
 
 function Lab(props) {
 
-/* const handleChange = (e) => {
-    console.log("hello " + e.target);
-} */
-
 const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
 
   const [selectedBranch, setBranch] = useState("");
   const [selectedGroup, setGroup] = useState("");
 const [childKey, setChildKey] = useState(0);
 
-  const handleChange = (e, parameter) => {
+  const handleChange = (e, parameter, branch, group) => {
     const { name, value } = e.target
-    //console.log('name', name)
-    //console.log('value', value)
-    //console.log('parameter', parameter)
 
     const editData = parameterData.map((item) => 
-    item.parameter === parameter && name ? { ...item, [name]: value } : item      
+    	(item.parameter === parameter && item.branch === branch && item.group === group && name) ? { ...item, [name]: value } : item      
     )
-
-    //console.log('editData', editData)
 
     setParameterData(editData)
   } 
