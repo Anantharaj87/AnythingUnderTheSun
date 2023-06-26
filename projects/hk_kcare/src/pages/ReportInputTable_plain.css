@@ -1,0 +1,20 @@
+.container {
+	position: relative;
+	z-index: 300;
+}
+
+.headertable {
+    position: fixed;
+    top: 0px;
+    left: 0px; 
+    height: 90px;
+    z-index: 200;
+}
+
+.recordstable {
+	position: absolute;
+	overflow: auto;
+    top: 90px;
+    left: 0px; 
+    z-index: 100;
+}

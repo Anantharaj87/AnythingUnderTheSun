@@ -1,3 +1,4 @@
+import './PrintableReportTable.css';
 
 export default function PrintableReportTable({theadData, tbodyData, patientInfo}) {
 
@@ -81,7 +82,7 @@ const prepareContent = () => {
 	var content = [];
 
 	content.push({td1: "Name: " + patientInfo.name, td2: "Age: " + patientInfo.age + " years", td3: "Sex: " + patientInfo.sex});
-	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "Date: " + formattedDate(), td3: ""});
+	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "OP No: " + patientInfo.opno, td3: "Date: " + formattedDate()});
 	content.push({td1: "", td2: "LABORATORY REPORT", td3: "", td2style: {bold: true}});
 	content.push({td1: "TEST NAME", td2: "RESULTS/UNITS", td3: "REFERENCE VALUE", td1style: {bold: true}, td2style: {bold: true}, td3style: {bold: true}});
 
@@ -96,7 +97,7 @@ const prepareContent = () => {
 				if (hasParametersPopulatedForBranchGroup(branch, group)) {
 
 					if(group !== "na") {
-						content.push({td1: group.toUpperCase(), td2: "", td3: ""});
+						content.push({td1: group.toUpperCase(), td2: "", td3: "", td1style: {bold: true}});
 					}
 
 					 getParams(branch, group).map((row, index) => {
@@ -141,7 +142,16 @@ const prepareContent = () => {
 						})
 			 
 					}
-
+					
+				</tbody>
+			</table>
+			
+			<table className="table table-borderless reportfooter">
+				<tbody>
+					<tr>
+						<td className="text-start fw-bold">Lab Technician</td>
+						<td className="text-end fw-bold">Verified by</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

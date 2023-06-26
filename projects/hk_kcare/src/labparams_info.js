@@ -122,8 +122,24 @@ const labparams_info = {
             "unit": "cells/cumm"
         }
     }, {
+        "branch": "blood grouping and typing",
+        "group": "na",
+        "parameter": "Blood group",
+        "ref": {
+            "group": ["O", "A", "B", "AB"],
+            "unit": ""
+        }
+    }, {
+        "branch": "blood grouping and typing",
+        "group": "na",
+        "parameter": "Rh (D) type",
+        "ref": {
+            "group": ["positive", "negative"],
+            "unit": ""
+        }
+    }, {
         "branch": "biochemistry",
-        "group": "blood grouping and typing",
+        "group": "na",
         "parameter": "Blood sugar (Random)",
         "ref": {
             "range": {
@@ -134,7 +150,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "blood grouping and typing",
+        "group": "na",
         "parameter": "Blood sugar (Fasting)",
         "ref": {
             "range": {
@@ -145,7 +161,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "blood grouping and typing",
+        "group": "na",
         "parameter": "Blood sugar (Post prandial)",
         "ref": {
             "range": {
@@ -156,7 +172,7 @@ const labparams_info = {
         }
     }, {
         "branch": "biochemistry",
-        "group": "blood grouping and typing",
+        "group": "na",
         "parameter": "HbA1C",
         "ref": {
             "range": {
