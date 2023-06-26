@@ -5,12 +5,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import labparams_info from './labparams_info';
+import billing_info from './billing_info';
 import properties from './properties';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App labparamsinfo={labparams_info} properties={properties}/>
+    <App labparamsinfo={labparams_info} billinginfo={billing_info} properties={properties}/>
   </React.StrictMode>
 );
 

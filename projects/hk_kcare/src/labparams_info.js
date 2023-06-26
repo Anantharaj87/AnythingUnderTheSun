@@ -10,7 +10,9 @@ const labparams_info = {
                 "max": 15
             },
             "unit": "gm/dl"
-        }
+        },
+        "cost": 100,
+        "groupcost": 250
     }, {
         "branch": "hematology",
         "group": "complete blood count",
@@ -21,7 +23,9 @@ const labparams_info = {
                 "max": 4.8
             },
             "unit": "million cells/cumm"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
         "group": "complete blood count",
@@ -32,7 +36,9 @@ const labparams_info = {
                 "max": 46
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
         "group": "complete blood count",
@@ -43,43 +49,51 @@ const labparams_info = {
                 "max": 11000
             },
             "unit": "cells/cumm"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
-        "parameter": "Neutrophils",
+        "group": "complete blood count",
+        "parameter": "Differential-Neutrophils",
         "ref": {
             "range": {
                 "min": 40,
                 "max": 75
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
-        "parameter": "Lymphocytes",
+        "group": "complete blood count",
+        "parameter": "Differential-Lymphocytes",
         "ref": {
             "range": {
                 "min": 20,
                 "max": 45
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
-        "parameter": "Mixed cells",
+        "group": "complete blood count",
+        "parameter": "Differential-Mixed cells",
         "ref": {
             "range": {
                 "min": 2,
                 "max": 10
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
+        "group": "complete blood count",
         "parameter": "MCV",
         "ref": {
             "range": {
@@ -87,10 +101,12 @@ const labparams_info = {
                 "max": 101
             },
             "unit": "fl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
+        "group": "complete blood count",
         "parameter": "MCH",
         "ref": {
             "range": {
@@ -98,10 +114,12 @@ const labparams_info = {
                 "max": 32
             },
             "unit": "pg"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
+        "group": "complete blood count",
         "parameter": "MCHC",
         "ref": {
             "range": {
@@ -109,10 +127,12 @@ const labparams_info = {
                 "max": 36
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "hematology",
-        "group": "differential count",
+        "group": "complete blood count",
         "parameter": "Platelet count",
         "ref": {
             "range": {
@@ -120,7 +140,9 @@ const labparams_info = {
                 "max": 450000
             },
             "unit": "cells/cumm"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "blood grouping and typing",
         "group": "na",
@@ -128,7 +150,9 @@ const labparams_info = {
         "ref": {
             "group": ["O", "A", "B", "AB"],
             "unit": ""
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "blood grouping and typing",
         "group": "na",
@@ -136,7 +160,9 @@ const labparams_info = {
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "na",
@@ -147,7 +173,9 @@ const labparams_info = {
                 "max": 200
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 50,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "na",
@@ -158,7 +186,9 @@ const labparams_info = {
                 "max": 100
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 50,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "na",
@@ -169,7 +199,9 @@ const labparams_info = {
                 "max": 140
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 50,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "na",
@@ -180,7 +212,9 @@ const labparams_info = {
                 "max": 5.7
             },
             "unit": "%"
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
@@ -191,7 +225,9 @@ const labparams_info = {
                 "max": 45
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 75,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "renal function test",
@@ -202,7 +238,9 @@ const labparams_info = {
                 "max": 1.2
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 75,
+        "groupcost": -1
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -213,7 +251,9 @@ const labparams_info = {
                 "max": 145
             },
             "unit": "meq/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -224,7 +264,9 @@ const labparams_info = {
                 "max": 5.5
             },
             "unit": "meq/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -235,7 +277,9 @@ const labparams_info = {
                 "max": 107
             },
             "unit": "meq/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -246,7 +290,9 @@ const labparams_info = {
                 "max": 26
             },
             "unit": "meq/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -257,7 +303,9 @@ const labparams_info = {
                 "max": 10.8
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 100,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -268,7 +316,9 @@ const labparams_info = {
                 "max": 4.5
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 100,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "electrolytes",
@@ -279,7 +329,9 @@ const labparams_info = {
                 "max": 6.5
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": 100,
+        "groupcost": 250
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -290,7 +342,9 @@ const labparams_info = {
                 "max": 1.2
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -301,7 +355,9 @@ const labparams_info = {
                 "max": 0.2
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -312,7 +368,9 @@ const labparams_info = {
                 "max": 0.8
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -323,7 +381,9 @@ const labparams_info = {
                 "max": 40
             },
             "unit": "u/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -334,7 +394,9 @@ const labparams_info = {
                 "max": 40
             },
             "unit": "u/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -345,7 +407,9 @@ const labparams_info = {
                 "max": 170
             },
             "unit": "u/l"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -356,7 +420,9 @@ const labparams_info = {
                 "max": 8
             },
             "unit": "g/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "liver function test",
@@ -367,7 +433,9 @@ const labparams_info = {
                 "max": 6
             },
             "unit": "g/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
@@ -378,7 +446,9 @@ const labparams_info = {
                 "max": 200
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
@@ -389,7 +459,9 @@ const labparams_info = {
                 "max": 150
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
@@ -400,7 +472,9 @@ const labparams_info = {
                 "max": 150
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
@@ -410,7 +484,9 @@ const labparams_info = {
                 "min": 55
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
@@ -421,7 +497,9 @@ const labparams_info = {
                 "max": 99
             },
             "unit": "mg/dl"
-        }
+        },
+        "cost": -1,
+        "groupcost": 400
     }, {
         "branch": "serology",
         "group": "na",
@@ -429,7 +507,9 @@ const labparams_info = {
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "serology",
         "group": "na",
@@ -437,7 +517,9 @@ const labparams_info = {
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "serology",
         "group": "na",
@@ -445,76 +527,108 @@ const labparams_info = {
         "ref": {
             "group": ["positive", "negative"],
             "unit": ""
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Colour"
+        "parameter": "Colour",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Reaction"
+        "parameter": "Reaction",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "pH"
+        "parameter": "pH",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Specific gravity"
+        "parameter": "Specific gravity",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Albumin"
+        "parameter": "Albumin",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Glucose"
+        "parameter": "Glucose",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Bile salt"
+        "parameter": "Bile salt",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Bile pigment"
+        "parameter": "Bile pigment",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Ketone"
+        "parameter": "Ketone",
+        "cost": -1,
+        "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
         "parameter": "RBC",
         "ref": {
             "unit": "hpf"
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
         "parameter": "Pus cells",
         "ref": {
             "unit": "hpf"
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
         "parameter": "Epithelial cells",
         "ref": {
             "unit": "hpf"
-        }
+        },
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "Casts"
+        "parameter": "Casts",
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "Crystals"
+        "parameter": "Crystals",
+        "cost": -1,
+        "groupcost": -1
     }, {
         "branch": "clinicalpathology",
         "group": "microscopy",
-        "parameter": "Bacteria"
+        "parameter": "Bacteria",
+        "cost": -1,
+        "groupcost": -1
     }]
 }
 

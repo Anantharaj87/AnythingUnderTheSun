@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Lab from "./pages/Lab";
+import LabBilling from "./pages/LabBilling";
 
 function App(props) {
   return (
@@ -12,6 +13,7 @@ function App(props) {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
+          <Route path="billing" element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
           <Route path="*" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
         </Route>
       </Routes>

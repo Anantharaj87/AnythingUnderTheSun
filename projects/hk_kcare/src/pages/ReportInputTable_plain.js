@@ -1,6 +1,6 @@
 import './ReportInputTable_plain.css';
 
-export default function ReportInputTable_plain({handleChange, handleBranchChange, handleGroupChange, theadData, parameterData, setParameterData, selectedBranch, setBranch, selectedGroup, setGroup, patientInfo, updatePatientInfo}) {
+export default function ReportInputTable_plain({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo}) {
 
     const getDistinctBranches = () => {
         return parameterData.map(item => item.branch)

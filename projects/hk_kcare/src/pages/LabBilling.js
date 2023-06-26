@@ -1,23 +1,27 @@
 import ReactDOMServer from 'react-dom/server';
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import { useState } from 'react';
-import PrintableReportTable from "./PrintableReportTable";
-import ReportInputTable_plain from "./ReportInputTable_plain";
+import PrintableBillingTable from "./PrintableBillingTable";
+import BillingInputTable from "./BillingInputTable";
 import './Lab.css';
 
-function Lab(props) {
+function LabBilling(props) {
 
-const [parameterData, setParameterData] = useState(props.labparamsinfo.tests);
+const [parameterData, setParameterData] = useState(props.billinginfo.billabletests);
 const [childKey, setChildKey] = useState(0);
 
-  const handleChange = (e, parameter, branch, group) => {
+  const handleChange = (e, unitname) => {
     const { name, value } = e.target
 
+	console.log(unitname + " ::: " + name + " ::: " + value);
+	
     const editData = parameterData.map((item) => 
-    	(item.parameter === parameter && item.branch === branch && item.group === group && name) ? { ...item, [name]: value.toUpperCase() } : item      
+    	(item.unitname === unitname && name) ? { ...item, [name]: value.toUpperCase() } : item      
     )
 
     setParameterData(editData)
+    
+    //console.log(parameterData);
   } 
 
 
@@ -49,10 +53,10 @@ const formattedDate = () => {
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
 
-		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
+		const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
 
 		var opt = {
-		    margin: props.properties.pdf_margin,
+		    margin: [0.25, 0.25, 0.25, 0.25],
 		    filename: formattedDate() + "_" + patientInfo.name + ".pdf",
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
@@ -63,7 +67,7 @@ const formattedDate = () => {
 		  html2pdf().set(opt).from(printElement).save();
 
 
-		setParameterData(props.labparamsinfo.tests);
+		setParameterData(props.billinginfo.billabletests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: "", opno: ""});
 
 		setChildKey(prev => prev + 1);
@@ -71,12 +75,12 @@ const formattedDate = () => {
 
   return (
     <div>
-	<ReportInputTable_plain key={childKey} handleChange={handleChange} theadData={["parameter", "parametervalue", "ref"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo}/>
+	<BillingInputTable key={childKey} handleChange={handleChange} theadData={["name", "billable", "cost"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo}/>
 
 <br />
-	<button className="btn btn-primary fixedbutton" onClick={(e) => onClick(e, this)}>Save Report (PDF)</button>
+	<button className="btn btn-primary fixedbutton" onClick={(e) => onClick(e, this)}>Save Bill (PDF)</button>
     </div>
   );
 }
 
-export default Lab;
+export default LabBilling;
