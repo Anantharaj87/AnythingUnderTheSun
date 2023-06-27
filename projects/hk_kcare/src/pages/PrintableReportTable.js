@@ -1,6 +1,6 @@
 //import './PrintableReportTable.css';
 
-export default function PrintableReportTable({theadData, tbodyData, patientInfo}) {
+export default function PrintableReportTable({theadData, tbodyData, patientInfo, timeParams}) {
 
     const getDistinctBranches = () => {
         return tbodyData.map(item => item.branch)
@@ -63,35 +63,14 @@ const computeCellValue = (row, key) => {
 
 }
 
-	const formattedDate = () => {
-		var date = new Date();
-		var dateStr =
-	  	("00" + date.getDate()).slice(-2) + "/" +
-	  	("00" + (date.getMonth() + 1)).slice(-2) + "/" +
-	  	date.getFullYear() + " " +
-	  	("00" + date.getHours()).slice(-2) + ":" +
-	  	("00" + date.getMinutes()).slice(-2) + ":" +
-	  	("00" + date.getSeconds()).slice(-2);
-
-		var billStr = "R" +
-	    date.getFullYear() + 
-	    ("00" + (date.getMonth() + 1)).slice(-2) +
-	    ("00" + date.getDate()).slice(-2) +
-	  	("00" + date.getHours()).slice(-2) +
-	  	("00" + date.getMinutes()).slice(-2) +
-	  	("00" + date.getSeconds()).slice(-2);
-	
-		return {"datetime": dateStr, "reportno": billStr};
-	}
-
 
 const prepareContent = () => {
 
 	var content = [];
 
 	content.push({td1: "Name: " + patientInfo.name, td2: "Age: " + patientInfo.age + " years", td3: "Sex: " + patientInfo.sex});
-	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "OP No: " + patientInfo.opno, td3: "Date: " + formattedDate().datetime});
-	content.push({td1: "", td2: "LABORATORY REPORT", td3: "Report No: " + formattedDate().reportno, td2style: {bold: true}});
+	content.push({td1: "Sample No: " + patientInfo.sampleno, td2: "OP No: " + patientInfo.opno, td3: "Date: " + timeParams.datetime});
+	content.push({td1: "", td2: "LABORATORY REPORT", td3: "Report No: " + timeParams.reportno, td2style: {bold: true}});
 	content.push({td1: "TEST NAME", td2: "RESULTS/UNITS", td3: "REFERENCE VALUE", td1style: {bold: true}, td2style: {bold: true}, td3style: {bold: true}});
 
 	getDistinctBranches().map((branch, index) => {

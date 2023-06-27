@@ -38,9 +38,17 @@ const { name, value } = e.target
 	console.log(patientInfo);
 }
 
-const formattedDate = () => {
-	var date = new Date();
-	var dateStr =
+	const formattedDate = () => {
+		var date = new Date();
+		var dateStr =
+	  	("00" + date.getDate()).slice(-2) + "/" +
+	  	("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+	  	date.getFullYear() + " " +
+	  	("00" + date.getHours()).slice(-2) + ":" +
+	  	("00" + date.getMinutes()).slice(-2) + ":" +
+	  	("00" + date.getSeconds()).slice(-2);
+
+	var fnStr =
 	  date.getFullYear() + 
 	  ("00" + (date.getMonth() + 1)).slice(-2) +
 	  ("00" + date.getDate()).slice(-2) + "_" +
@@ -48,22 +56,47 @@ const formattedDate = () => {
 	  ("00" + date.getMinutes()).slice(-2) +
 	  ("00" + date.getSeconds()).slice(-2);
 
-	return dateStr;
-}
 
+		var billStr = "B" +
+	    date.getFullYear() + 
+	    ("00" + (date.getMonth() + 1)).slice(-2) +
+	    ("00" + date.getDate()).slice(-2) +
+	  	("00" + date.getHours()).slice(-2) +
+	  	("00" + date.getMinutes()).slice(-2) +
+	  	("00" + date.getSeconds()).slice(-2);
+	  	
+	  	var reportStr = "R" +
+	    date.getFullYear() + 
+	    ("00" + (date.getMonth() + 1)).slice(-2) +
+	    ("00" + date.getDate()).slice(-2) +
+	  	("00" + date.getHours()).slice(-2) +
+	  	("00" + date.getMinutes()).slice(-2) +
+	  	("00" + date.getSeconds()).slice(-2);
+	
+		return {"datetime": dateStr, "fnprefix": fnStr, "billno": billStr, "reportno": reportStr};
+	}
+
+	
+	const getBillableItems = () => {
+		return parameterData
+            	.filter((item, index, arr) => item.billable && item.billable !== "" && item.billable !== null && item.billable === "YES");
+	}
+	
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
+
+		const timeParams = formattedDate();
+					
+		var blob = new Blob([JSON.stringify({"patientinfo": patientInfo, "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "billno": timeParams.billno}, "billables": getBillableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
 		
-		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
-		saveAs(blob, "hello world.txt");
-		
-		
-/*
-		const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
+		saveAs(blob, timeParams.fnprefix + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".json",);
+	
+
+		const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} billables={getBillableItems()} patientInfo={patientInfo} timeParams={timeParams}/>);
 
 		var opt = {
 		    margin: [0.25, 0.25, 0.25, 0.25],
-		    filename: formattedDate() + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".pdf",
+		    filename: timeParams.fnprefix + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".pdf",
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
 		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
@@ -72,7 +105,7 @@ const formattedDate = () => {
 
 		  html2pdf().set(opt).from(printElement).save();
 
-*/
+
 		setParameterData(props.billinginfo.billabletests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: "", opno: ""});
 
@@ -81,7 +114,7 @@ const formattedDate = () => {
 
   return (
     <div>
-	<BillingInputTable key={childKey} handleChange={handleChange} theadData={["name", "billable", "cost"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo}/>
+	<BillingInputTable key={childKey} handleChange={handleChange} theadData={["name", "billable", "cost"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo} formattedDate={formattedDate}/>
 
 <br />
 	<button className="btn btn-primary fixedbutton" onClick={(e) => onClick(e, this)}>Save Bill (PDF)</button>

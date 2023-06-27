@@ -33,9 +33,17 @@ const { name, value } = e.target
 	console.log(patientInfo);
 }
 
-const formattedDate = () => {
-	var date = new Date();
-	var dateStr =
+	const formattedDate = () => {
+		var date = new Date();
+		var dateStr =
+	  	("00" + date.getDate()).slice(-2) + "/" +
+	  	("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+	  	date.getFullYear() + " " +
+	  	("00" + date.getHours()).slice(-2) + ":" +
+	  	("00" + date.getMinutes()).slice(-2) + ":" +
+	  	("00" + date.getSeconds()).slice(-2);
+
+	var fnStr =
 	  date.getFullYear() + 
 	  ("00" + (date.getMonth() + 1)).slice(-2) +
 	  ("00" + date.getDate()).slice(-2) + "_" +
@@ -43,17 +51,46 @@ const formattedDate = () => {
 	  ("00" + date.getMinutes()).slice(-2) +
 	  ("00" + date.getSeconds()).slice(-2);
 
-	return dateStr;
-}
+
+		var billStr = "B" +
+	    date.getFullYear() + 
+	    ("00" + (date.getMonth() + 1)).slice(-2) +
+	    ("00" + date.getDate()).slice(-2) +
+	  	("00" + date.getHours()).slice(-2) +
+	  	("00" + date.getMinutes()).slice(-2) +
+	  	("00" + date.getSeconds()).slice(-2);
+	  	
+	  	var reportStr = "R" +
+	    date.getFullYear() + 
+	    ("00" + (date.getMonth() + 1)).slice(-2) +
+	    ("00" + date.getDate()).slice(-2) +
+	  	("00" + date.getHours()).slice(-2) +
+	  	("00" + date.getMinutes()).slice(-2) +
+	  	("00" + date.getSeconds()).slice(-2);
+	
+		return {"datetime": dateStr, "fnprefix": fnStr, "billno": billStr, "reportno": reportStr};
+	}
+
+	const getReportableItems = () => {
+		return parameterData
+            	.filter((item, index, arr) => item.parametervalue);
+	}
 
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
+		
+		const timeParams = formattedDate();
+		
+				var blob = new Blob([JSON.stringify({"patientinfo": patientInfo, "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "reportno": timeParams.reportno}, "reportables": getReportableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
+		
+		saveAs(blob, timeParams.fnprefix + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABREPORT" + ".json",);
+	
 
-		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
+		const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo} timeParams={timeParams}/>);
 
 		var opt = {
 		    margin: props.properties.pdf_margin,
-		    filename: formattedDate() + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABREPORT" + ".pdf",
+		    filename: timeParams.fnprefix + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABREPORT" + ".pdf",
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
 		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
@@ -71,7 +108,7 @@ const formattedDate = () => {
 
   return (
     <div>
-	<ReportInputTable_plain key={childKey} handleChange={handleChange} theadData={["parameter", "parametervalue", "ref"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo}/>
+	<ReportInputTable_plain key={childKey} handleChange={handleChange} theadData={["parameter", "parametervalue", "ref"]} parameterData={parameterData} setParameterData={setParameterData} patientInfo={patientInfo} updatePatientInfo={updatePatientInfo} formattedDate={formattedDate}/>
 
 <br />
 	<button className="btn btn-primary fixedbutton" onClick={(e) => onClick(e, this)}>Save Report (PDF)</button>

@@ -1,36 +1,11 @@
 //import './PrintableReportTable.css';
 
-export default function PrintableBillingTable({theadData, tbodyData, patientInfo}) {
+export default function PrintableBillingTable({theadData, billables, patientInfo, timeParams}) {
 
-	const getBillableItems = () => {
-		return tbodyData
-            	.filter((item, index, arr) => item.billable && item.billable !== "" && item.billable !== null && item.billable === "YES");
-	}
 	
 	const getTotalPrice = () => {
 	
-		 return getBillableItems().map(item => item.cost).reduce((prev, next) => prev + next);
-	}
-	
-	const formattedDate = () => {
-		var date = new Date();
-		var dateStr =
-	  	("00" + date.getDate()).slice(-2) + "/" +
-	  	("00" + (date.getMonth() + 1)).slice(-2) + "/" +
-	  	date.getFullYear() + " " +
-	  	("00" + date.getHours()).slice(-2) + ":" +
-	  	("00" + date.getMinutes()).slice(-2) + ":" +
-	  	("00" + date.getSeconds()).slice(-2);
-
-		var billStr = "B" +
-	    date.getFullYear() + 
-	    ("00" + (date.getMonth() + 1)).slice(-2) +
-	    ("00" + date.getDate()).slice(-2) +
-	  	("00" + date.getHours()).slice(-2) +
-	  	("00" + date.getMinutes()).slice(-2) +
-	  	("00" + date.getSeconds()).slice(-2);
-	
-		return {"datetime": dateStr, "billno": billStr};
+		 return billables.map(item => item.cost).reduce((prev, next) => prev + next);
 	}
 	
     return (
@@ -50,7 +25,7 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 					</tr>
 					<tr>
 						<td className="text-center">
-							BILL NO - {formattedDate().billno}
+							BILL NO - {timeParams.billno}
 						</td>
 					</tr>
 				</tbody>
@@ -89,7 +64,7 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 						</td>
 						<td>Date: </td>
 						<td>
-							{formattedDate().datetime}
+							{timeParams.datetime}
 						</td>
 					</tr>
 					
@@ -110,7 +85,7 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 				<tbody>
 					
 					{
-						getBillableItems().map((item, index) => {
+						billables.map((item, index) => {
 
 							return (<tr key = {index}> 
 									<th scope="row">{index+1}</th>

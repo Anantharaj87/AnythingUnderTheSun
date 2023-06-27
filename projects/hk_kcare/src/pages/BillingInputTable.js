@@ -1,20 +1,6 @@
 //import './ReportInputTable_plain.css';
 
-export default function BillingInputTable({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo}) {
-
-
-	const formattedDate = () => {
-		var date = new Date();
-		var dateStr =
-	  	("00" + date.getDate()).slice(-2) + "/" +
-	  	("00" + (date.getMonth() + 1)).slice(-2) + "/" +
-	  	date.getFullYear() + " " +
-	  	("00" + date.getHours()).slice(-2) + ":" +
-	  	("00" + date.getMinutes()).slice(-2) + ":" +
-	  	("00" + date.getSeconds()).slice(-2);
-	
-		return dateStr;
-	}
+export default function BillingInputTable({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo, formattedDate}) {
 	
 	function handleEnter(event) {
   	if (event.keyCode === 13) {
