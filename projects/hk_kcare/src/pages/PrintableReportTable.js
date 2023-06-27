@@ -108,11 +108,7 @@ const prepareContent = () => {
 
     return (
     
-    <html>
-<head>
-<link href="bootstrap/dist/css/bootstrap.css" />
-</head>
-<body>
+
 
 		<div>
 			<table className="table table-borderless">
@@ -149,8 +145,6 @@ const prepareContent = () => {
 				</tbody>
 			</table>
 		</div>
-		
-</body>
-</html> 
+
 	)
 }

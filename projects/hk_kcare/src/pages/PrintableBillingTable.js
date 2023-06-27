@@ -10,13 +10,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 	
     return (
     
-    
-<html>
-<head>
-  <link href="bootstrap/dist/css/bootstrap.css" />
 
-</head>
-<body>
 
 
     
@@ -136,8 +130,6 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 			</table>
 		</div>
 
-</body>
-</html> 
 
 
 	)
