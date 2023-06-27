@@ -82,7 +82,7 @@ const { name, value } = e.target
 		
 		const timeParams = formattedDate();
 		
-				var blob = new Blob([JSON.stringify({"patientinfo": patientInfo, "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "reportno": timeParams.reportno}, "reportables": getReportableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
+			var blob = new Blob([JSON.stringify({"patientinfo": patientInfo, "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "reportno": timeParams.reportno}, "reportables": getReportableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
 		
 		saveAs(blob, timeParams.fnprefix + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABREPORT" + ".json",);
 	
@@ -100,6 +100,12 @@ const { name, value } = e.target
 
 		  html2pdf().set(opt).from(printElement).save();
 
+		/* const printElement = ReactDOMServer.renderToString(<PrintableReportTable theadData={["parameter", "parametervalue", "ref"]} tbodyData={parameterData} patientInfo={patientInfo} timeParams={timeParams}/>);
+		
+var blob = new Blob([printElement], {type: "text/plain;charset=utf-8"});
+		
+		saveAs(blob, "check1.txt",); */
+		
 
 		setParameterData(props.labparamsinfo.tests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: "", opno: ""});

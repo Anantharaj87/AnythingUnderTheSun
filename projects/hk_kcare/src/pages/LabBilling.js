@@ -105,6 +105,12 @@ const { name, value } = e.target
 
 		  html2pdf().set(opt).from(printElement).save();
 
+		/* const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} billables={getBillableItems()} patientInfo={patientInfo} timeParams={timeParams}/>);
+		
+var blob = new Blob([printElement], {type: "text/plain;charset=utf-8"});
+		
+		saveAs(blob, "check.txt",); */
+		
 
 		setParameterData(props.billinginfo.billabletests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: "", opno: ""});
