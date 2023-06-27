@@ -4,6 +4,7 @@ import { useState } from 'react';
 import PrintableReportTable from "./PrintableReportTable";
 import ReportInputTable_plain from "./ReportInputTable_plain";
 //import './Lab.css';
+import { saveAs } from 'file-saver';
 
 function Lab(props) {
 
