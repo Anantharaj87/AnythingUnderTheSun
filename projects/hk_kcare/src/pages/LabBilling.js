@@ -57,7 +57,7 @@ const formattedDate = () => {
 
 		var opt = {
 		    margin: [0.25, 0.25, 0.25, 0.25],
-		    filename: formattedDate() + "_" + patientInfo.name + ".pdf",
+		    filename: formattedDate() + "_" + patientInfo.sampleno + "_" + patientInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".pdf",
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
 		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },

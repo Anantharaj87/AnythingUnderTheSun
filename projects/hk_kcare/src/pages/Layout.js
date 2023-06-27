@@ -16,10 +16,10 @@ const Layout = () => {
     		<div className="collapse navbar-collapse" id="navbarNav">
       		<ul className="navbar-nav">
         		<li className="nav-item">
-          		<Link className="nav-link" to="/billing">billing</Link>
+          		<Link className="nav-link" to="/billing">Billing</Link>
         		</li>
         		<li className="nav-item">
-          		<Link className="nav-link" to="/lab">lab</Link>
+          		<Link className="nav-link" to="/lab">Lab</Link>
         		</li>
       		</ul>
     		</div>

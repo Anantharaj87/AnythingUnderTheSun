@@ -21,24 +21,43 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 	  	("00" + date.getHours()).slice(-2) + ":" +
 	  	("00" + date.getMinutes()).slice(-2) + ":" +
 	  	("00" + date.getSeconds()).slice(-2);
+
+		var billStr = "B" +
+	  	("00" + date.getDate()).slice(-2) +
+	  	("00" + (date.getMonth() + 1)).slice(-2) +
+	  	date.getFullYear() +
+	  	("00" + date.getHours()).slice(-2) +
+	  	("00" + date.getMinutes()).slice(-2) +
+	  	("00" + date.getSeconds()).slice(-2);
 	
-		return dateStr;
+		return {"datetime": dateStr, "billno": billStr};
 	}
 	
     return (
 		<div>
-			<h3 className="text-center fw-bold">HK DIAGNOSTIC LAB</h3>
-			
-			<p className="text-center">
-				HK KIDNEY CARE,
-				49, DOWLATH NAGAR,
-				VILVARAYANATHAM,
-				CUDDALORE-607001
-			</p>
 		
-			<h4 className="text-center fw-bold">LAB BILL</h4>
+			<table className="table table-borderless">
+				<tbody>
+				
+					<tr>
+						<td className="text-center fw-bold">HK DIAGNOSTIC LAB</td>
+					</tr>
+					<tr>
+						<td className="text-center">HK KIDNEY CARE, #49, DOWLATH NAGAR, VILVARAYANATHAM, CUDDALORE-607001</td>
+					</tr>
+					<tr>
+						<td className="text-center fw-bold">LAB BILL</td>
+					</tr>
+					<tr>
+						<td className="text-center">
+							BILL NO - {formattedDate().billno}
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			
-			<table className="table">
+			
+			<table className="table table-borderless">
 				<tbody>
 				
 					<tr>
@@ -70,7 +89,7 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 						</td>
 						<td>Date: </td>
 						<td>
-						{formattedDate()}
+							{formattedDate().datetime}
 						</td>
 					</tr>
 					
@@ -111,12 +130,17 @@ export default function PrintableBillingTable({theadData, tbodyData, patientInfo
 				</tbody>
 			</table>
 			
-			<table className="table">
+			<table className="table table-borderless">
 				<tbody>
 					<tr>
 						<td className="text-start fw-bold">Total:</td>
 						<td className="text-end fw-bold">{getTotalPrice()} Rupees</td>
 					</tr>
+				</tbody>
+			</table>
+
+			<table className="table table-borderless reportfooter">
+				<tbody>
 					<tr>
 						<td className="text-start fw-bold"></td>
 						<td className="text-end fw-bold">Signature</td>

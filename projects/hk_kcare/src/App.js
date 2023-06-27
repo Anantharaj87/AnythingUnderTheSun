@@ -12,9 +12,10 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
+          <Route index element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
+          <Route path="lab" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
           <Route path="billing" element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
-          <Route path="*" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
+          <Route path="*" element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
         </Route>
       </Routes>
     </BrowserRouter>
