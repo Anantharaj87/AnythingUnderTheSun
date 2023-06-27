@@ -110,7 +110,7 @@ const prepareContent = () => {
     
     <html>
 <head>
-<link href="./node_modules/bootstrap/dist/css/bootstrap.css" />
+<link href="bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
 
