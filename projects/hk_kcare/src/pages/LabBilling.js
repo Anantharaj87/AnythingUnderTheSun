@@ -3,7 +3,8 @@ import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import { useState } from 'react';
 import PrintableBillingTable from "./PrintableBillingTable";
 import BillingInputTable from "./BillingInputTable";
-import './Lab.css';
+//import './Lab.css';
+import { saveAs } from 'file-saver';
 
 function LabBilling(props) {
 
@@ -40,9 +41,9 @@ const { name, value } = e.target
 const formattedDate = () => {
 	var date = new Date();
 	var dateStr =
-	  ("00" + date.getDate()).slice(-2) +
+	  date.getFullYear() + 
 	  ("00" + (date.getMonth() + 1)).slice(-2) +
-	  date.getFullYear() + "_" +
+	  ("00" + date.getDate()).slice(-2) + "_" +
 	  ("00" + date.getHours()).slice(-2) +
 	  ("00" + date.getMinutes()).slice(-2) +
 	  ("00" + date.getSeconds()).slice(-2);
@@ -52,7 +53,12 @@ const formattedDate = () => {
 
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
-
+		
+		var blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "hello world.txt");
+		
+		
+/*
 		const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} tbodyData={parameterData} patientInfo={patientInfo}/>);
 
 		var opt = {
@@ -66,7 +72,7 @@ const formattedDate = () => {
 
 		  html2pdf().set(opt).from(printElement).save();
 
-
+*/
 		setParameterData(props.billinginfo.billabletests);
 		setPatientInfo({name: "", age: "", sex: "", sampleno: "", opno: ""});
 

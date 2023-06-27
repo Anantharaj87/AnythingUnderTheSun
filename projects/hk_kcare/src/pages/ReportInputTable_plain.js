@@ -1,4 +1,4 @@
-import './ReportInputTable_plain.css';
+//import './ReportInputTable_plain.css';
 
 export default function ReportInputTable_plain({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo}) {
 

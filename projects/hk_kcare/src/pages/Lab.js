@@ -3,7 +3,7 @@ import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import { useState } from 'react';
 import PrintableReportTable from "./PrintableReportTable";
 import ReportInputTable_plain from "./ReportInputTable_plain";
-import './Lab.css';
+//import './Lab.css';
 
 function Lab(props) {
 
@@ -36,9 +36,9 @@ const { name, value } = e.target
 const formattedDate = () => {
 	var date = new Date();
 	var dateStr =
-	  ("00" + date.getDate()).slice(-2) +
+	  date.getFullYear() + 
 	  ("00" + (date.getMonth() + 1)).slice(-2) +
-	  date.getFullYear() + "_" +
+	  ("00" + date.getDate()).slice(-2) + "_" +
 	  ("00" + date.getHours()).slice(-2) +
 	  ("00" + date.getMinutes()).slice(-2) +
 	  ("00" + date.getSeconds()).slice(-2);
