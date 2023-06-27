@@ -1,12 +1,11 @@
-import logo from './logo.svg';
-import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import logo from './logo.svg';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
-import Home from "./pages/Home";
 import Lab from "./pages/Lab";
 import LabBilling from "./pages/LabBilling";
+
 
 function App(props) {
   return (

@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import './PrintableReportTable.css';
 
 export default function PrintableReportTable({theadData, tbodyData, patientInfo, timeParams}) {

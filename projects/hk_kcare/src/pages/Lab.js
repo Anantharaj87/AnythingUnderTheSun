@@ -1,11 +1,10 @@
+import './Lab.css';
 import ReactDOMServer from 'react-dom/server';
-import 'bootstrap/dist/css/bootstrap.css';
-import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import { useState } from 'react';
+import html2pdf from 'html2pdf.js/dist/html2pdf.min';
+import { saveAs } from 'file-saver';
 import PrintableReportTable from "./PrintableReportTable";
 import ReportInputTable_plain from "./ReportInputTable_plain";
-import './Lab.css';
-import { saveAs } from 'file-saver';
 
 function Lab(props) {
 

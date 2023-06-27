@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import './ReportInputTable_plain.css';
 
 export default function ReportInputTable_plain({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo, formattedDate}) {
