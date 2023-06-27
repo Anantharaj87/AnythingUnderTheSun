@@ -1,4 +1,5 @@
-//import './PrintableReportTable.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import './PrintableReportTable.css';
 
 export default function PrintableBillingTable({theadData, billables, patientInfo, timeParams}) {
 
