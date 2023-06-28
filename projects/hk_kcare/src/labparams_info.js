@@ -539,12 +539,6 @@ const labparams_info = {
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Reaction",
-        "cost": -1,
-        "groupcost": 50
-    }, {
-        "branch": "clinicalpathology",
-        "group": "urine routine examination",
         "parameter": "pH",
         "cost": -1,
         "groupcost": 50
@@ -557,7 +551,7 @@ const labparams_info = {
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Albumin",
+        "parameter": "Protein",
         "cost": -1,
         "groupcost": 50
     }, {
@@ -569,19 +563,37 @@ const labparams_info = {
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Bile salt",
+        "parameter": "Bilirubin",
         "cost": -1,
         "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
-        "parameter": "Bile pigment",
+        "parameter": "Urobilinogen",
         "cost": -1,
         "groupcost": 50
     }, {
         "branch": "clinicalpathology",
         "group": "urine routine examination",
         "parameter": "Ketone",
+        "cost": -1,
+        "groupcost": 50
+    }, {
+        "branch": "clinicalpathology",
+        "group": "urine routine examination",
+        "parameter": "Blood",
+        "cost": -1,
+        "groupcost": 50
+    }, {
+        "branch": "clinicalpathology",
+        "group": "urine routine examination",
+        "parameter": "Leucocytes",
+        "cost": -1,
+        "groupcost": 50
+    }, {
+        "branch": "clinicalpathology",
+        "group": "urine routine examination",
+        "parameter": "Nitrite",
         "cost": -1,
         "groupcost": 50
     }, {
