@@ -100,7 +100,7 @@ const { name, value } = e.target
 		    image: { type: "jpeg", quality: 1 },
 		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
 		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
-		    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+		    jsPDF: { unit: "in", format: "a5", orientation: "landscape" },
 		  };
 
 		  html2pdf().set(opt).from(printElement).save();

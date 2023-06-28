@@ -111,6 +111,7 @@ export default function BillingInputTable({handleChange, theadData, parameterDat
 										<select key={index} name="billable" onChange={(e) => handleChange(e, item["unitname"])} onKeyDown={handleEnter}>
 											<option disabled selected value> -- select an option -- </option>
 											<option key={index} value="yes">YES</option>
+											<option key={index} value="no">NO</option>
 										</select>
 									</td>
 									<td>
