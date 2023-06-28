@@ -4,4 +4,4 @@ echo %curpath%
 
 cd /d %curpath%
 
-npm stop
+npm stopprod

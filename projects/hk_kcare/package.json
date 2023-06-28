@@ -24,8 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "stop": "npx kill-port 3000",
-    "restart": "npx kill-port 3000 && react-scripts start",
+    "stopprod": "npx kill-port 3000",
+    "restartprod": "npx kill-port 3000 && serve -s build",
     "startprod": "serve -s build"
   },
   "eslintConfig": {

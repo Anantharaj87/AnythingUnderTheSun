@@ -4,4 +4,4 @@ echo %curpath%
 
 cd /d %curpath%
 
-npm start
+npm startprod
