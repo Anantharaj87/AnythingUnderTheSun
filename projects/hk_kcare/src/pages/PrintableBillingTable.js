@@ -5,7 +5,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 	
 	const getTotalPrice = () => {
 	
-		 return billables.map(item => item.cost).reduce((prev, next) => prev + next);
+		 return billables.map(item => item.cost).reduce((prev, next) => prev + next, 0);
 	}
 	
     return (
@@ -15,9 +15,9 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 
     
     
-		<div>
+		<div style={{fontSize: 7}}>
 		
-			<table className="table table-borderless">
+			<table className="table table-borderless table-sm">
 				<tbody>
 				
 					<tr>
@@ -38,7 +38,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 			</table>
 			
 			
-			<table className="table table-borderless">
+			<table className="table table-borderless table-sm">
 				<tbody>
 				
 					<tr>
@@ -50,7 +50,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 						<td>Age: </td>
 						<td>
 							{patientInfo.age}
-						 	<span> Years</span>
+						 	<span>Y</span>
 						 </td>
 
 						<td>Sex: </td>
@@ -77,13 +77,18 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 				</tbody>
 			</table>
 			
-			<table className="table">
+			<table className="table table-sm">
 				<thead>
     				<tr>
     					<th scope="col">#</th>
     					{
     					theadData.map((item, index) => {
-    						return <th scope="col">{item}</th>
+    					
+    						if(item.toLowerCase() === "price") {
+    							return <th scope="col" className="text-end">{item}</th>
+    						} else {
+    							return <th scope="col">{item}</th>
+    						}
     					})
     					}
     				</tr>
@@ -98,8 +103,8 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 									<td>
 										{item.unitname.toUpperCase()}
 									</td>
-									<td>
-										{item.cost}
+									<td className="text-end">
+										{item.cost.toFixed(2)}
 									</td>
 									
 								</tr>)
@@ -111,16 +116,16 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 				</tbody>
 			</table>
 			
-			<table className="table table-borderless">
+			<table className="table table-borderless table-sm">
 				<tbody>
 					<tr>
 						<td className="text-start fw-bold">Total:</td>
-						<td className="text-end fw-bold">{getTotalPrice()} Rupees</td>
+						<td className="text-end fw-bold">Rs. {getTotalPrice().toFixed(2)}</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<table className="table table-borderless reportfooter">
+			<table className="table table-borderless table-sm">
 				<tbody>
 					<tr>
 						<td className="text-start fw-bold"></td>
