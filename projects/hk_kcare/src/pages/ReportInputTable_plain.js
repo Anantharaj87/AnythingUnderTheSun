@@ -123,7 +123,7 @@ function handleEnter(event) {
 
     return (
 		<form className="container" style={{fontSize: 14}}>
-		<table className="table table-dark table-borderless table-sm headertable">
+		<table className="table table-secondary table-borderless table-sm headertable">
 				<tbody>
 				
 					<tr>

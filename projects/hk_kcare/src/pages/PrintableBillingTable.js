@@ -99,11 +99,11 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 						billables.map((item, index) => {
 
 							return (<tr key = {index}> 
-									<th scope="row">{index+1}</th>
-									<td>
+									<th className="w-25" scope="row">{index+1}</th>
+									<td className="w-50">
 										{item.unitname.toUpperCase()}
 									</td>
-									<td className="text-end">
+									<td className="w-50 text-end">
 										{item.cost.toFixed(2)}
 									</td>
 									
@@ -119,8 +119,8 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 			<table className="table table-borderless table-sm">
 				<tbody>
 					<tr>
-						<td className="text-start fw-bold">Total:</td>
-						<td className="text-end fw-bold">Rs. {getTotalPrice().toFixed(2)}</td>
+						<td className="w-50 text-end fw-bold">Total:</td>
+						<td className="w-50 text-end fw-bold">Rs. {getTotalPrice().toFixed(2)}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -128,8 +128,8 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 			<table className="table table-borderless table-sm">
 				<tbody>
 					<tr>
-						<td className="text-start fw-bold"></td>
-						<td className="text-end fw-bold">Signature</td>
+						<td className="w-50 text-start fw-bold"></td>
+						<td className="w-50 text-end fw-bold">Signature</td>
 					</tr>
 				</tbody>
 			</table>

@@ -118,13 +118,13 @@ const prepareContent = () => {
 						prepareContent().map((item, index) => {
 
 							return (<tr key = {index}> 
-									<td>
+									<td className="w-50">
 										{item.td1style && item.td1style.bold ? <b>{item.td1}</b>: <span>{item.td1}</span>}
 									</td>
-									<td>
+									<td className="w-50">
 										{item.td2style && item.td2style.bold ? <b>{item.td2}</b>: <span>{item.td2}</span>}
 									</td>
-									<td>
+									<td className="w-50 text-end">
 										{item.td3style && item.td3style.bold ? <b>{item.td3}</b>: <span>{item.td3}</span>}
 									</td>
 								</tr>)
@@ -139,8 +139,8 @@ const prepareContent = () => {
 			<table className="table table-borderless reportfooter">
 				<tbody>
 					<tr>
-						<td className="text-start fw-bold">Lab Technician</td>
-						<td className="text-end fw-bold">Verified by</td>
+						<td className="w-50 text-start fw-bold">Lab Technician</td>
+						<td className="w-50 text-end fw-bold">Verified by</td>
 					</tr>
 				</tbody>
 			</table>
