@@ -4,4 +4,5 @@ echo %curpath%
 
 cd /d "%curpath%"
 
-npm restartprod
+call npx kill-port 3000
+call node server.js

@@ -4,4 +4,4 @@ echo %curpath%
 
 cd /d %curpath%
 
-npm stopprod
+call npx kill-port 3000

@@ -1,5 +1,5 @@
-Dim WshShell, strCurDir
+Dim WshShell, filePath
 Set WshShell = CreateObject("WScript.Shell")
-strCurDir    = WshShell.CurrentDirectory
-WshShell.Run chr(34) & strCurDir & "\start.bat" & chr(34), 0
+filePath    = WshShell.CurrentDirectory & "\" & start.bat
+WshShell.Run chr(34) & filePath & chr(34), 0
 Set WshShell = Nothing

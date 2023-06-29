@@ -4,4 +4,4 @@ echo %curpath%
 
 cd /d %curpath%
 
-npm startprod
+call node server.js
