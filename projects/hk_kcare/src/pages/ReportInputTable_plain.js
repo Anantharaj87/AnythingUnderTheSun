@@ -122,8 +122,8 @@ function handleEnter(event) {
 }
 
     return (
-		<form className="container">
-		<table className="table table-dark table-borderless headertable">
+		<form className="container" style={{fontSize: 14}}>
+		<table className="table table-dark table-borderless table-sm headertable">
 				<tbody>
 				
 					<tr>
@@ -189,7 +189,7 @@ function handleEnter(event) {
 				</tbody>
 			</table>
 			
-			<table className="table table-borderless recordstable">
+			<table className="table table-borderless table-sm recordstable">
 				<tbody>
 									
 					<tr>
@@ -201,7 +201,7 @@ function handleEnter(event) {
 					<tr>
 						<td><b>TEST NAME</b></td>
 						<td><b>RESULTS/UNITS</b></td>
-						<td><b>REFERENCE VALUE</b></td>
+						<td className="text-end"><b>REFERENCE VALUE</b></td>
 					</tr>
 					
 					{
@@ -218,7 +218,7 @@ function handleEnter(event) {
 										prepareValueUI(item.td2, item.td2data, item.td2style, index)	
 									}
 									</td>
-									<td>
+									<td className="text-end">
 									{
 										prepareValueUI(item.td3, item.td3data, item.td3style, index)
 									}

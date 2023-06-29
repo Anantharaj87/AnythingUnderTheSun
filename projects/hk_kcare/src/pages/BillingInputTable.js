@@ -16,8 +16,8 @@ export default function BillingInputTable({handleChange, theadData, parameterDat
 	}
 
     return (
-		<form className="container">
-		<table className="table table-dark table-borderless headertable">
+		<form className="container" style={{fontSize: 14}}>
+		<table className="table table-dark table-borderless table-sm headertable">
 				<tbody>
 				
 					<tr>
@@ -83,7 +83,7 @@ export default function BillingInputTable({handleChange, theadData, parameterDat
 				</tbody>
 			</table>
 			
-			<table className="table table-borderless recordstable">
+			<table className="table table-borderless table-sm recordstable">
 				<tbody>
 									
 					<tr>
@@ -95,7 +95,7 @@ export default function BillingInputTable({handleChange, theadData, parameterDat
 					<tr>
 						<td><b>TEST NAME</b></td>
 						<td><b>BILLABLE</b></td>
-						<td><b>COST</b></td>
+						<td className="text-end"><b>PRICE</b></td>
 					</tr>
 					
 					{
@@ -114,9 +114,9 @@ export default function BillingInputTable({handleChange, theadData, parameterDat
 											<option key={index} value="no">NO</option>
 										</select>
 									</td>
-									<td>
+									<td className="text-end">
 									{
-										item.cost
+										item.cost.toFixed(2)
 									}
 									</td>
 								</tr>)
