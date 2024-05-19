@@ -334,6 +334,19 @@ const labparams_info = {
         "groupcost": 250
     }, {
         "branch": "biochemistry",
+        "group": "na",
+        "parameter": "C-Reactive Protein (CRP)",
+        "ref": {
+            "range": {
+                "min": 0.3,
+                "max": 1.0
+            },
+            "unit": "mg/dl"
+        },
+        "cost": 100,
+        "groupcost": 250
+    }, {
+        "branch": "biochemistry",
         "group": "liver function test",
         "parameter": "Bilirubin Total",
         "ref": {
@@ -490,7 +503,7 @@ const labparams_info = {
     }, {
         "branch": "biochemistry",
         "group": "lipid profile",
-        "parameter": "VLDL cholesterol",
+        "parameter": "VLDL Cholesterol",
         "ref": {
             "range": {
                 "min": 10,
@@ -498,6 +511,54 @@ const labparams_info = {
             },
             "unit": "mg/dl"
         },
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine protein creatinine ratio",
+        "parameter": "Urine protein",
+        "ref": {
+            "unit": "mg/dl"
+        },
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine protein creatinine ratio",
+        "parameter": "Urine creatinine",
+        "ref": {
+            "unit": "mg/dl"
+        },
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine protein creatinine ratio",
+        "parameter": "Urine protein creatinine ratio",
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine albumin creatinine ratio",
+        "parameter": "Urine albumin",
+        "ref": {
+            "unit": "mg/dl"
+        },
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine albumin creatinine ratio",
+        "parameter": "Urine creatinine",
+        "ref": {
+            "unit": "mg/dl"
+        },
+        "cost": -1,
+        "groupcost": 400
+    }, {
+        "branch": "biochemistry",
+        "group": "urine albumin creatinine ratio",
+        "parameter": "Urine albumin creatinine ratio",
         "cost": -1,
         "groupcost": 400
     }, {

@@ -15,7 +15,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 
     
     
-		<div style={{fontSize: 7}}>
+		<div style={{fontSize: 11}}>
 		
 			<table className="table table-borderless table-sm">
 				<tbody>

@@ -139,8 +139,8 @@ const prepareContent = () => {
 			<table className="table table-borderless reportfooter">
 				<tbody>
 					<tr>
-						<td className="w-50 text-start fw-bold">Lab Technician</td>
-						<td className="w-50 text-end fw-bold">Verified by</td>
+						<td className="w-50 text-end fw-bold">Lab Technician</td>
+						
 					</tr>
 				</tbody>
 			</table>

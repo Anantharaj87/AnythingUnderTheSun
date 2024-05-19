@@ -15,7 +15,10 @@ const billing_info = {
     },{
     	"unitname": "Blood sugar (Post prandial)",
     	"cost": 50
-    },{
+    }, {
+		"unitname": "HbA1C",
+		"cost": 300
+	},{
     	"unitname": "Blood Urea",
     	"cost": 75
     },{
@@ -34,6 +37,9 @@ const billing_info = {
     	"unitname": "Serum Uric Acid",
     	"cost": 100
     },{
+    	"unitname": "C-Reactive Protein (CRP)",
+    	"cost": 250
+    },{
     	"unitname": "liver function test",
     	"cost": 400
     },{
@@ -41,7 +47,13 @@ const billing_info = {
     	"cost": 400
     },{
     	"unitname": "urine routine examination",
-    	"cost": 50
+    	"cost": 100
+    },{
+    	"unitname": "urine albumin creatinine ratio",
+    	"cost": 300
+    },{
+    	"unitname": "urine protein creatinine ratio",
+    	"cost": 300
     }]
 }
 
