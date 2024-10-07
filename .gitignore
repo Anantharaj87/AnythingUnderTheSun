@@ -1,2 +1,4 @@
 
-projects/hk_kcare/out/
+projects/hk_kcare/build/
+projects/hk_kcare/node_modules/
+projects/hk_kcare_server/node_modules/

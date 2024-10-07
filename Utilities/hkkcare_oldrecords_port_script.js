@@ -21,6 +21,10 @@ files.forEach(function (filename, index) {
 		file.patientinfo.name = file.patientinfo.name.replace(".", "");
 		file.patientinfo.name = file.patientinfo.name.trim();
 
+		file.patientinfo.age = file.patientinfo.age.trim();
+		file.patientinfo.sex = file.patientinfo.sex.trim();
+
+
 		var temppinfo = {
 			name: file.patientinfo.name,
 			age: file.patientinfo.age,
