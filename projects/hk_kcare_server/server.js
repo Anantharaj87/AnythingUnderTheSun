@@ -5,6 +5,7 @@ const PatientsRoute = require("./src/routes/patientsroute.js");
 
 const app = express();
 
+app.use(express.json());
 app.use("/patients", PatientsRoute);
 
 const _database = 'mongodb://hkkcare:hkkcare@localhost:27017/hkkcare?authSource=hkkcare';

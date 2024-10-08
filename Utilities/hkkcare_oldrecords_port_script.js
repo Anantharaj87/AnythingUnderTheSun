@@ -1,7 +1,6 @@
 //mongosh -u hkkcare -p hkkcare --authenticationDatabase hkkcare < hkkcare_oldrecords_port_script.js
 
 use hkkcare
-//show collections
 
 var srcdir = "/home/pi/Hk_kcare_records/old_records"
 
@@ -11,7 +10,6 @@ files.forEach(function (filename, index) {
 
 
 	var filepath = path.join(srcdir, filename);
-	print(filepath);
 
 	var file = JSON.parse(fs.readFileSync(filepath).toString());
 
@@ -21,7 +19,7 @@ files.forEach(function (filename, index) {
 		file.patientinfo.name = file.patientinfo.name.replace(".", "");
 		file.patientinfo.name = file.patientinfo.name.trim();
 
-		file.patientinfo.age = file.patientinfo.age.trim();
+		file.patientinfo.age = Number(file.patientinfo.age.trim());
 		file.patientinfo.sex = file.patientinfo.sex.trim();
 
 
@@ -31,36 +29,35 @@ files.forEach(function (filename, index) {
 			sex: file.patientinfo.sex
 		}
 
-		print(temppinfo);
+               var lastrecord = db.patients.find({}).sort({ "_id" : -1.0 }).limit(1).toArray();
 
-		
-		var findresult = db.patients.findOne(temppinfo);
+	       var tempid = 1;
+               if (lastrecord.length == 0) {
+			tempid = 1;
+                        temppinfo.p_id = tempid;
+                        db.patients.insertOne(temppinfo);
+                } else {
 
-		var updateresult = db.patients.updateOne(temppinfo,
-		      { $set: temppinfo },
-		      { upsert: true });
-
-
-		var idd = null;
-
-		if (findresult != null) {
-			idd = findresult._id;
-		} else {
-			idd = updateresult.insertedId;
-		}
-
+			var findrecord = db.patients.findOne(temppinfo);
+			if (findrecord == null) {
+				tempid = lastrecord[0].p_id + 1;
+				temppinfo.p_id = tempid;
+                        	db.patients.insertOne(temppinfo);
+			} else {
+				tempid = findrecord.p_id;
+			}
+                }
 
 		if (filename.indexOf("LABBILL") != -1) {
-			var labbillrecord = Object.assign({p_id: idd}, file.patientinfo, file.timebasedparams);
+			var labbillrecord = Object.assign({p_id: tempid}, file.patientinfo, file.timebasedparams);
 			labbillrecord.billables = file.billables;
 
 			db.labbills.insertOne(labbillrecord);
-			
 		}
 
 
 		if (filename.indexOf("LABREPORT") != -1) {
-			var labreportrecord = Object.assign({p_id: idd}, file.patientinfo, file.timebasedparams);
+			var labreportrecord = Object.assign({p_id: tempid}, file.patientinfo, file.timebasedparams);
 			labreportrecord.reportables = file.reportables;
 
 			db.labreports.insertOne(labreportrecord);
