@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+var cors = require('cors')
 const PatientsRoute = require("./src/routes/patientsroute.js");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use("/patients", PatientsRoute);
 
 const _database = 'mongodb://hkkcare:hkkcare@localhost:27017/hkkcare?authSource=hkkcare';

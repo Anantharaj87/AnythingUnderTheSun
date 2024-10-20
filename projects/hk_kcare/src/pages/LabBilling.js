@@ -26,17 +26,17 @@ const [childKey, setChildKey] = useState(0);
   } 
 
 
-const [patientInfo, setPatientInfo] = useState({name: "", age: "", sex: "", sampleno: "", opno: ""});
+	const [patientInfo, setPatientInfo] = useState({name: "", age: "", sex: "", sampleno: "", opno: ""});
 
-const updatePatientInfo = (e) => {
-const { name, value } = e.target
+	const updatePatientInfo = (e) => {
+	const { name, value } = e.target
 
-	setPatientInfo(prev => {
-		return {...prev, [name]: value.toUpperCase()}
-	});
+		setPatientInfo(prev => {
+			return {...prev, [name]: value.toUpperCase()}
+		});
 
-	console.log(patientInfo);
-}
+		console.log(patientInfo);
+	}
 
 	const formattedDate = () => {
 		var date = new Date();

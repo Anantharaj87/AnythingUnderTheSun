@@ -5,25 +5,44 @@ async function findPatients(inpname) {
   return await Patient.find({name: { $regex: inpname, $options: 'i' }}).sort({ name: 1 });
 }
 
-async function findPatient(name, age, sex) {
-  return await Patient.findOne({name: name, age: age, sex: sex});
+async function findPatient(name, age, dob, sex) {
+  if (age && age != "") {
+    return await Patient.findOne({name: name, age: age, sex: sex});
+  } else {
+
+  //const s = '01-01-1970Z';
+  //const d = new Date(s);
+  //console.log(d);
+
+
+
+    return await Patient.findOne({name: name, dob: new Date(dob), sex: sex});
+  }
 }
 
 async function lastPatient() {
   return await Patient.find({}).sort({ "_id" : -1.0 }).limit(1);
 }
 
-async function addPatient(name, age, sex, phno) {
+async function addPatient(name, age, dob, sex, phno) {
 
-  const findrecord = await findPatient(name, age, sex);
+  const findrecord = await findPatient(name, age, dob, sex);
 
   if (findrecord == null) {
         const lastPatients = await lastPatient();
 
         if (lastPatients.length == 0) {
-    	  return await Patient.create({name: name, age: age, sex: sex, phno: phno, p_id: 1});
+          if (age && age != "") {
+    	    return await Patient.create({name: name, age: age, sex: sex, phno: phno, p_id: 1});
+          } else {
+            return await Patient.create({name: name, dob: new Date(dob), sex: sex, phno: phno, p_id: 1});
+          }
         } else {
-          return await Patient.create({name: name, age: age, sex: sex, phno: phno, p_id: lastPatients[0].p_id + 1});
+          if (age && age != "") {
+            return await Patient.create({name: name, age: age, sex: sex, phno: phno, p_id: lastPatients[0].p_id + 1});
+          } else {
+            return await Patient.create({name: name, dob: new Date(dob), sex: sex, phno: phno, p_id: lastPatients[0].p_id + 1});
+          }
         }
 
   } else {
@@ -45,7 +64,7 @@ exports.patients_list = asyncHandler(async (req, res, next) => {
   findPatients(inputname).then((patients) => {
     res.send(patients);
   }).catch(err =>
-    res.send('Could get data from MongoDB:‌', err)
+    res.status(500).send('Could not get data from MongoDB:')
   );
 
 
@@ -57,16 +76,18 @@ exports.merge_patients = asyncHandler(async (req, res, next) => {
 
 exports.add_patient = asyncHandler(async (req, res, next) => {
 
-  if (req.body && req.body.name && req.body.name != "" && req.body.age && req.body.sex && req.body.sex != "" && req.body.phoneno && req.body.phoneno != "") {
+console.log(req.body);
 
- addPatient(req.body.name, req.body.age, req.body.sex, req.body.phoneno).then((patient) => {
+  if (req.body && req.body.name && req.body.name != "" && (req.body.age || req.body.dob) && (req.body.age != "" || req.body.dob != "") && req.body.sex && req.body.sex != "" && req.body.phno && req.body.phno != "") {
 
+ addPatient(req.body.name, req.body.age, req.body.dob, req.body.sex, req.body.phno).then((patient) => {
       res.send(patient);
-    }).catch(err =>
-      res.send('Could get data from MongoDB: ^`^l', err)
+    }).catch(err => {
+      res.status(500).send('Couldnot get data from MongoDB:')
+}
     );
 
   } else {
-    res.send("Add patient failed");
+    res.status(400).send("Add patient failed");
   }
 });
