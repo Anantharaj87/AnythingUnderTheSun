@@ -50,6 +50,10 @@ async function addPatient(name, age, dob, sex, phno) {
   }
 }
 
+async function deletePatients(patientIds) {
+	return await Patient.deleteMany({ _id: { $in: patientIds } });
+}
+
 async function mergePatients(tobereplaced_p_ids, dest_p_id) {
 
 }
@@ -66,7 +70,21 @@ exports.patients_list = asyncHandler(async (req, res, next) => {
   }).catch(err =>
     res.status(500).send('Could not get data from MongoDB:')
   );
+});
 
+exports.delete_patients = asyncHandler(async (req, res, next) => {
+
+  console.log(req.body);
+
+if (req.body) {
+  deletePatients(req.body).then((response) => {
+    res.send(response);
+  }).catch(err =>
+    res.status(500).send('Could not delete data from MongoDB:')
+  );
+} else {
+res.status(400).send("Delete patients failed");
+}
 
 });
 

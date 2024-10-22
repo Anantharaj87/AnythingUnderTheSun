@@ -157,7 +157,7 @@ console.log(JSON.stringify(newPatientInfo));
 
 						<td></td>
 						<td>
-							<button className="btn btn-primary" onClick={(e) => onClick(e, this)}>Add New Patient</button>
+							<button className="btn btn-primary btn-sm" onClick={(e) => onClick(e, this)}>Add New Patient</button>
 						</td>
 						<td></td>
 						<td></td>
@@ -168,7 +168,7 @@ console.log(JSON.stringify(newPatientInfo));
 
 	
 
-	<PatientList theadData={["Patient ID", "Name", "Age", "DOB", "Sex", "Phone No."]} allpatients={allPatients}/>
+	<PatientList theadData={["Select", "Patient ID", "Name", "Age", "DOB", "Sex", "Phone No."]} allpatients={allPatients} getServerBaseURL={getServerBaseURL} RefreshPatients={RefreshPatients}/>
 
         
 </form>
