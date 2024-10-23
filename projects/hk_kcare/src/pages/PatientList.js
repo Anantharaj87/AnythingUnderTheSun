@@ -1,4 +1,6 @@
 import './PatientList.css';
+import React, { useState, useEffect, useRef } from 'react';
+import AlertDialog from "../dialogs/alertdialog";
 
 export default function PatientList({theadData, allpatients, getServerBaseURL, RefreshPatients}) {
 
@@ -10,7 +12,7 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify(selectedPatients)
+                  body: JSON.stringify(selectedPatients.current)
                 })
                 .then( (response) => { 
                    return response
@@ -35,41 +37,76 @@ e.preventDefault();
 const onDeleteClick = (e, pa) => {
 console.log(e);
 console.log(pa);
+//e.preventDefault();
+handleOpenDeleteDialog();
+
+e.preventDefault();
+}
+
+//var selectedPatients = [];
+const selectedPatients = useRef([]);
+
+const onCheckChange = (e, val) => {
+
+if (e.target.checked && !selectedPatients.current.includes(val)) {
+	selectedPatients.current.push(val);
+}
+
+if (!e.target.checked && selectedPatients.current.includes(val)) {
+	selectedPatients.current.splice(selectedPatients.current.indexOf(val), 1);
+}
+
+console.log(selectedPatients.current);
+
+}
 
 
-deletePatients().then((response) => {
+
+const [opendeletedialog, setOpenDeleteDialog] = React.useState(false);
+
+//const opendeletedialog = useRef(false);
+
+  const handleOpenDeleteDialog = () => {
+    console.log("opened");
+console.log(selectedPatients.current);
+    setOpenDeleteDialog(true);
+//opendeletedialog.current = true;
+console.log(selectedPatients.current);
+  };
+
+  const handleCloseDeleteDialog = (e, choice) => {
+    console.log("closed " + choice);
+//console.log(selectedPatients.current);
+    setOpenDeleteDialog(false);
+//opendeletedialog.current = false;
+//console.log(selectedPatients.current);
+
+	if (choice == true) {
+		deletePatients().then((response) => {
                                 console.log(response);
-                                RefreshPatients("");
+                                
 
                                 if (response.status == 200) {
                                        // setNewPatientInfo({name: "", dob: "", sex: "", phno: ""});
+					selectedPatients.current = [];
+
+					RefreshPatients();
                                 }
                           }).catch(err =>
                             console.log(err)
                           );
 
-}
+	}
+//e.preventDefault();
+  };
 
-var selectedPatients = [];
-
-const onCheckChange = (e, val) => {
-
-if (e.target.checked && !selectedPatients.includes(val)) {
-	selectedPatients.push(val);
-}
-
-if (!e.target.checked && selectedPatients.includes(val)) {
-	selectedPatients.splice(selectedPatients.indexOf(val), 1);
-}
-
-console.log(selectedPatients);
-
-}
 
 	
     return (
     
 		<div style={{fontSize: 11}}>
+
+<AlertDialog open={opendeletedialog} dialogheader="Confirm" dialogtext="Do you want to delete records?" handleClose={handleCloseDeleteDialog} />
 
 			<table className="table table-sm">
 				<tbody>

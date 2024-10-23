@@ -2,6 +2,7 @@ import './Patients.css';
 import ReactDOMServer from 'react-dom/server';
 import { useState, useEffect } from 'react';
 import PatientList from "./PatientList";
+import AlertDialog from "../dialogs/alertdialog";
 
 function Patients(props) {
 
@@ -40,6 +41,13 @@ console.log(JSON.stringify(newPatientInfo));
 
 
   function RefreshPatients(startname) {
+
+if (!startname) {
+startname = newPatientInfo.name;
+}
+
+setAllPatients([]);
+
 	getAllPatients(startname).then((patients) => {
 			//	console.log(patients);
 			    setAllPatients(patients);
@@ -77,7 +85,7 @@ console.log(JSON.stringify(newPatientInfo));
 			    console.log(err)
 			  );
 
-	e.preventDefault();
+	//e.preventDefault();
   }
 
   function handleEnter(event) {
@@ -97,8 +105,13 @@ console.log(JSON.stringify(newPatientInfo));
     RefreshPatients("");
   }, []);
 
+
+
+
+
   return (
     <div>
+
 <form className="container" style={{fontSize: 14}}>
 
 
@@ -168,7 +181,7 @@ console.log(JSON.stringify(newPatientInfo));
 
 	
 
-	<PatientList theadData={["Select", "Patient ID", "Name", "Age", "DOB", "Sex", "Phone No."]} allpatients={allPatients} getServerBaseURL={getServerBaseURL} RefreshPatients={RefreshPatients}/>
+	<PatientList theadData={["Select", "Patient ID", "Name", "Age", "DOB (yyyy-mm-dd)", "Sex", "Phone No."]} allpatients={allPatients} getServerBaseURL={getServerBaseURL} RefreshPatients={RefreshPatients}/>
 
         
 </form>
