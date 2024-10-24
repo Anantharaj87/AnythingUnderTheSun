@@ -7,6 +7,7 @@ import PatientDetails from "./PatientDetails";
 import PatientCurrentVisitDetails from "./PatientCurrentVisitDetails";
 import PrintableBillingTable from "./PrintableBillingTable";
 import BillingInputTable from "./BillingInputTable";
+import AlertDialog from "../dialogs/alertdialog";
 
 function LabBilling(props) {
 
@@ -25,8 +26,6 @@ function LabBilling(props) {
 		)
 
 		setParameterData(editData)
-
-		//console.log(parameterData);
 	} 
 
 	const formattedDate = () => {
@@ -75,9 +74,10 @@ function LabBilling(props) {
 	
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
-		console.log(getBillableItems.length);
+		console.log(getBillableItems().length);
+		console.log(patientInfo);
 
-		if (patientInfo != null && patientInfo.name != "" && patientInfo.age != "" && patientInfo.sex != "" && getBillableItems.length > 0) {
+		if (patientInfo != null && patientInfo.name != "" && patientInfo.age != "" && patientInfo.sex != "" && getBillableItems().length > 0) {
 			const timeParams = formattedDate();
 						
 			/* var blob = new Blob([JSON.stringify({"patientinfo": Object.assign(patientInfo, visitInfo), "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "billno": timeParams.billno}, "billables": getBillableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
@@ -99,6 +99,8 @@ function LabBilling(props) {
 			html2pdf().set(opt).from(printElement).save();
 
 			setChildKey({id0: 3, id1: 4, id2: 5}); /*Rerender to reset the view */
+		} else {
+			handleOpenAlertDialog();
 		}
 
 	}
@@ -122,8 +124,24 @@ function LabBilling(props) {
 		});
 	}
 
+
+	const [openalertdialog, setOpenAlertDialog] = useState(false);
+
+
+	const handleOpenAlertDialog = () => {
+		console.log("opened");
+		setOpenAlertDialog(true);
+	};
+
+	const handleCloseAlertDialog = (e) => {
+		setOpenAlertDialog(false);
+	};
+
+
   return (
     <div>
+
+	<AlertDialog open={openalertdialog} dialogheader="Error" dialogtext="Patient info or the billables not provided." handleClose={handleCloseAlertDialog} />
 
 	<PatientDetails key={childKey.id0} updatePatientInfoCallback={updatePatientInfoCallback}/>
 

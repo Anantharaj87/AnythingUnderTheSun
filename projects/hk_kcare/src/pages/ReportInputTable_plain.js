@@ -1,6 +1,6 @@
 import './ReportInputTable_plain.css';
 
-export default function ReportInputTable_plain({handleChange, theadData, parameterData, setParameterData, patientInfo, updatePatientInfo, formattedDate}) {
+export default function ReportInputTable_plain({handleChange, theadData, parameterData}) {
 
     const getDistinctBranches = () => {
         return parameterData.map(item => item.branch)
@@ -108,87 +108,21 @@ const prepareContent = () => {
 		}
 	}
 
-function handleEnter(event) {
-  if (event.keyCode === 13) {
-    const form = event.target.form;
-    const index = Array.prototype.indexOf.call(form, event.target);
-    
-    if(index < form.elements.length - 1) {
-    	form.elements[index + 1].focus();
-    	event.preventDefault();
-    }
-    
-  }
-}
+	function handleEnter(event) {
+		if (event.keyCode === 13) {
+			const form = event.target.form;
+			const index = Array.prototype.indexOf.call(form, event.target);
+
+			if(index < form.elements.length - 1) {
+				form.elements[index + 1].focus();
+				event.preventDefault();
+			}
+
+		}
+	}
 
     return (
 		<form className="container" style={{fontSize: 14}}>
-		<table className="table table-secondary table-borderless table-sm headertable">
-				<tbody>
-				
-					<tr>
-						<td>Name: </td>
-						<td>
-							<input 
-						  	name="name"
-						  	value={patientInfo.name}
-						  	type="text"
-						  	onChange={(e) => updatePatientInfo(e)}
-						  	onKeyDown={handleEnter}
-							/>
-						</td>
-
-						<td>Age: </td>
-						<td>
-							<input
-						  	name="age"
-						  	defaultValue={patientInfo.age}
-						  	type="text"
-						  	onChange={(e) => updatePatientInfo(e)}
-						  	onKeyDown={handleEnter}
-							/>
-						 	<span> Years</span>
-						 </td>
-
-						<td>Sex: </td>
-						<td>
-							<select name="sex" onChange={(e) => updatePatientInfo(e)} onKeyDown={handleEnter}>
-								<option disabled selected value> -- select an option -- </option>
-								<option value="MALE">Male</option>
-								<option value="FEMALE">Female</option>
-								<option value="THIRDGENDER">ThirdGender</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td>Sample No: </td>
-						<td> 
-							<input
-						  	name="sampleno"
-						  	defaultValue={patientInfo.sampleno}
-						  	type="text"
-						  	onChange={(e) => updatePatientInfo(e)}
-						  	onKeyDown={handleEnter}
-							/>
-						</td>
-
-						<td>OP No: </td>
-						<td>
-							<input
-						  	name="opno"
-						  	defaultValue={patientInfo.opno}
-						  	type="text"
-						  	onChange={(e) => updatePatientInfo(e)}
-						  	onKeyDown={handleEnter}
-							/>
-						</td>
-						<td></td>
-						<td></td>
-					</tr>
-					
-				</tbody>
-			</table>
-			
 			<table className="table table-borderless table-sm recordstable">
 				<tbody>
 									

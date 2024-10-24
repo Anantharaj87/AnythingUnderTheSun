@@ -169,7 +169,7 @@ setAllPatients([]);
 
 						<td></td>
 						<td>
-							<button className="btn btn-primary btn-sm" onClick={(e) => onClick(e, this)}>Add New Patient</button>
+							<button className="btn btn-primary btn-sm" onClick={(e) => onClick(e, this)}>Register Patient</button>
 						</td>
 						<td></td>
 						<td></td>

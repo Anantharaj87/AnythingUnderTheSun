@@ -94,7 +94,7 @@ export default function PatientDetails({updatePatientInfoCallback}) {
 
 						<td>Age: </td>
 						<td>
-						 	<span>{value && value.age} Years</span>
+						 	<span>{value && value.age} Y</span>
 						 </td>
 
 						<td>Sex: </td>

@@ -15,7 +15,7 @@ console.log(handleClose);
     <React.Fragment>
       <Dialog
         open={open}
-        onClose={(e) => handleClose(e, false)}
+        onClose={(e) => handleClose(e)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -28,9 +28,8 @@ console.log(handleClose);
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={(e) => handleClose(e, false)}>No</Button>
-          <Button onClick={(e) => handleClose(e, true)} autoFocus>
-            Yes
+          <Button onClick={(e) => handleClose(e)} autoFocus>
+            Ok
           </Button>
         </DialogActions>
       </Dialog>

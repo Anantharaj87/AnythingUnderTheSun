@@ -63,43 +63,30 @@ console.log(selectedPatients.current);
 
 
 
-const [opendeletedialog, setOpenDeleteDialog] = React.useState(false);
+	const [opendeletedialog, setOpenDeleteDialog] = React.useState(false);
 
-//const opendeletedialog = useRef(false);
 
-  const handleOpenDeleteDialog = () => {
-    console.log("opened");
-console.log(selectedPatients.current);
-    setOpenDeleteDialog(true);
-//opendeletedialog.current = true;
-console.log(selectedPatients.current);
-  };
+	const handleOpenDeleteDialog = () => {
+		console.log("opened");
+		setOpenDeleteDialog(true);
+	};
 
-  const handleCloseDeleteDialog = (e, choice) => {
-    console.log("closed " + choice);
-//console.log(selectedPatients.current);
-    setOpenDeleteDialog(false);
-//opendeletedialog.current = false;
-//console.log(selectedPatients.current);
+	const handleCloseDeleteDialog = (e, choice) => {
+		console.log("closed " + choice);
+		setOpenDeleteDialog(false);
 
-	if (choice == true) {
-		deletePatients().then((response) => {
-                                console.log(response);
-                                
+		if (choice == true) {
+			deletePatients().then((response) => {
+				console.log(response);
 
-                                if (response.status == 200) {
-                                       // setNewPatientInfo({name: "", dob: "", sex: "", phno: ""});
+				if (response.status == 200) {
 					selectedPatients.current = [];
 
 					RefreshPatients();
-                                }
-                          }).catch(err =>
-                            console.log(err)
-                          );
-
-	}
-//e.preventDefault();
-  };
+				}
+				}).catch(err =>	console.log(err));
+		}
+	};
 
 
 	

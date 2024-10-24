@@ -13,10 +13,10 @@ const Layout = () => {
 	    		<div className="collapse navbar-collapse justify-content-between" id="navbarNav">
 		      		<ul className="navbar-nav mr-auto">
 					<li className="nav-item">
-				  		<Link className="nav-link" to="/billing">Billing</Link>
+				  		<Link className="nav-link" to="/labbilling">Lab Billing</Link>
 					</li>
 					<li className="nav-item">
-				  		<Link className="nav-link" to="/lab">Lab</Link>
+				  		<Link className="nav-link" to="/labreport">Lab Report</Link>
 					</li>
 		      		</ul>
 				<ul className="navbar-nav">

@@ -13,11 +13,11 @@ function App(props) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/billing" replace />} />
-          <Route path="*" element={<Navigate to="/billing" replace />} />
+          <Route index element={<Navigate to="/labbilling" replace />} />
+          <Route path="*" element={<Navigate to="/labbilling" replace />} />
 
-          <Route path="lab" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
-          <Route path="billing" element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
+          <Route path="labreport" element={<Lab labparamsinfo={props.labparamsinfo} properties={props.properties} />} />
+          <Route path="labbilling" element={<LabBilling billinginfo={props.billinginfo} properties={props.properties} />} />
           <Route path="patients" element={<Patients properties={props.properties} />} />
           
         </Route>
