@@ -85,9 +85,9 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
     					theadData.map((item, index) => {
     					
     						if(item.toLowerCase() === "price") {
-    							return <th scope="col" className="text-end">{item}</th>
+    							return <th key={index} scope="col" className="text-end">{item}</th>
     						} else {
-    							return <th scope="col">{item}</th>
+    							return <th key={index} scope="col">{item}</th>
     						}
     					})
     					}
@@ -98,7 +98,7 @@ export default function PrintableBillingTable({theadData, billables, patientInfo
 					{
 						billables.map((item, index) => {
 
-							return (<tr key = {index}> 
+							return (<tr key={index}> 
 									<th className="w-25" scope="row">{index+1}</th>
 									<td className="w-50">
 										{item.unitname.toUpperCase()}
