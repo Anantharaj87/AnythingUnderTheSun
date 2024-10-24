@@ -75,36 +75,42 @@ function LabBilling(props) {
 	
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
+		console.log(getBillableItems.length);
 
-		const timeParams = formattedDate();
-					
-		/* var blob = new Blob([JSON.stringify({"patientinfo": Object.assign(patientInfo, visitInfo), "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "billno": timeParams.billno}, "billables": getBillableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
-		
-		saveAs(blob, timeParams.fnprefix + "_" + visitInfo.sampleno + "_" + visitInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".json",); */
-	
-
-		const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} billables={getBillableItems()} patientInfo={Object.assign(patientInfo, visitInfo)} timeParams={timeParams}/>);
-
-		var opt = {
-		    margin: [0.25, 0.25, 0.25, 0.25],
-		    filename: timeParams.fnprefix + "_" + visitInfo.sampleno + "_" + visitInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".pdf",
-		    image: { type: "jpeg", quality: 1 },
-		    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
-		    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
-		    jsPDF: { unit: "in", format: "a5", orientation: "landscape" },
-		  };
-
-		  html2pdf().set(opt).from(printElement).save();
+		if (patientInfo != null && patientInfo.name != "" && patientInfo.age != "" && patientInfo.sex != "" && getBillableItems.length > 0) {
+			const timeParams = formattedDate();
+						
+			/* var blob = new Blob([JSON.stringify({"patientinfo": Object.assign(patientInfo, visitInfo), "timebasedparams": {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "billno": timeParams.billno}, "billables": getBillableItems()}, null, "\t")], {type: "text/plain;charset=utf-8"});
+			
+			saveAs(blob, timeParams.fnprefix + "_" + visitInfo.sampleno + "_" + visitInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".json",); */
 		
 
-		setChildKey({id0: 3, id1: 4, id2: 5}); /*Rerender to reset the view */
+			const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} billables={getBillableItems()} patientInfo={Object.assign(patientInfo, visitInfo)} timeParams={timeParams}/>);
+
+			var opt = {
+			    margin: [0.25, 0.25, 0.25, 0.25],
+			    filename: timeParams.fnprefix + "_" + visitInfo.sampleno + "_" + visitInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".pdf",
+			    image: { type: "jpeg", quality: 1 },
+			    pagebreak: { avoid: "tr", mode: "css", before: "#nextpage1" },
+			    html2canvas: { scale: 4, useCORS: true, dpi: 192, letterRendering: true },
+			    jsPDF: { unit: "in", format: "a5", orientation: "landscape" },
+			  };
+
+			html2pdf().set(opt).from(printElement).save();
+
+			setChildKey({id0: 3, id1: 4, id2: 5}); /*Rerender to reset the view */
+		}
 
 	}
 
 	const updatePatientInfoCallback = (pinfo) => {
 		console.log(pinfo);
 
-		setPatientInfo({name: pinfo.name.toUpperCase(), sex: pinfo.sex.toUpperCase(), age: pinfo.age})
+		if (pinfo != null) {
+			setPatientInfo({name: pinfo.name.toUpperCase(), sex: pinfo.sex.toUpperCase(), age: pinfo.age})
+		} else {
+			setPatientInfo({name: "", sex: "", age: ""});
+		}
 	}
 
 	const updatePatientCurrentVisitInfoCallback = (e, param) => {

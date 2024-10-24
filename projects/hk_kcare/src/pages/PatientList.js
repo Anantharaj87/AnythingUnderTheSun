@@ -1,6 +1,7 @@
 import './PatientList.css';
 import React, { useState, useEffect, useRef } from 'react';
 import AlertDialog from "../dialogs/alertdialog";
+import ConfirmDialog from "../dialogs/confirmdialog";
 
 export default function PatientList({theadData, allpatients, getServerBaseURL, RefreshPatients}) {
 
@@ -106,7 +107,7 @@ console.log(selectedPatients.current);
     
 		<div style={{fontSize: 11}}>
 
-<AlertDialog open={opendeletedialog} dialogheader="Confirm" dialogtext="Do you want to delete records?" handleClose={handleCloseDeleteDialog} />
+			<ConfirmDialog open={opendeletedialog} dialogheader="Confirm" dialogtext="Do you want to delete records?" handleClose={handleCloseDeleteDialog} />
 
 			<table className="table table-sm">
 				<tbody>

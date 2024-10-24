@@ -2,7 +2,6 @@ import './Patients.css';
 import ReactDOMServer from 'react-dom/server';
 import { useState, useEffect } from 'react';
 import PatientList from "./PatientList";
-import AlertDialog from "../dialogs/alertdialog";
 
 function Patients(props) {
 
