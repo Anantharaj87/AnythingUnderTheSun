@@ -94,7 +94,17 @@ function Lab(props) {
 
 			html2pdf().set(opt).from(printElement).save();
 
-			setChildKey({id0: 3, id1: 4, id2: 5}); /*Rerender to reset the view */
+			setParameterData(props.labparamsinfo.tests);
+			setPatientInfo({name: "", sex: "", age: ""});
+			setVisitInfo({sampleno: "", opno: ""});
+
+			var prev = childKey;
+			prev.id0 = prev.id0 + 1;
+			prev.id1 = prev.id1 + 1;
+			prev.id2 = prev.id2 + 1;
+
+			setChildKey(prev);
+
 		} else {
 			handleOpenAlertDialog();
 		}

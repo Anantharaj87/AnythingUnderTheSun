@@ -8,8 +8,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function ConfirmDialog({open, dialogheader, dialogtext, handleClose}) {
 
-console.log(open);
-console.log(handleClose);
+//console.log(open);
+//console.log(handleClose);
 
   return (
     <React.Fragment>

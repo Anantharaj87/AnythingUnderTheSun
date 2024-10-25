@@ -98,7 +98,16 @@ function LabBilling(props) {
 
 			html2pdf().set(opt).from(printElement).save();
 
-			setChildKey({id0: 3, id1: 4, id2: 5}); /*Rerender to reset the view */
+			setParameterData(props.billinginfo.billabletests);
+			setPatientInfo({name: "", sex: "", age: ""});
+			setVisitInfo({sampleno: "", opno: ""});
+
+			var prev = childKey;
+			prev.id0 = prev.id0 + 1;
+			prev.id1 = prev.id1 + 1;
+			prev.id2 = prev.id2 + 1;
+
+			setChildKey(prev); /*Rerender to reset the view */
 		} else {
 			handleOpenAlertDialog();
 		}
@@ -106,7 +115,6 @@ function LabBilling(props) {
 	}
 
 	const updatePatientInfoCallback = (pinfo) => {
-		console.log(pinfo);
 
 		if (pinfo != null) {
 			setPatientInfo({name: pinfo.name.toUpperCase(), sex: pinfo.sex.toUpperCase(), age: pinfo.age})
@@ -116,9 +124,6 @@ function LabBilling(props) {
 	}
 
 	const updatePatientCurrentVisitInfoCallback = (e, param) => {
-		console.log(e.target.value);
-		console.log(param);
-
 		setVisitInfo(prev => {
 			return {...prev, [param]: e.target.value}
 		});
@@ -129,7 +134,6 @@ function LabBilling(props) {
 
 
 	const handleOpenAlertDialog = () => {
-		console.log("opened");
 		setOpenAlertDialog(true);
 	};
 
