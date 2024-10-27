@@ -3,12 +3,16 @@ const path = require('path');
 const mongoose = require('mongoose');
 var cors = require('cors')
 const PatientsRoute = require("./src/routes/patientsroute.js");
+const ReportsRoute = require("./src/routes/labreportsroute.js");
+const BillsRoute = require("./src/routes/labbillsroute.js");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use("/patients", PatientsRoute);
+app.use("/reports", ReportsRoute);
+app.use("/bills", BillsRoute);
 
 const _database = 'mongodb://hkkcare:hkkcare@127.0.0.1:27017/hkkcare?authSource=hkkcare';
 
