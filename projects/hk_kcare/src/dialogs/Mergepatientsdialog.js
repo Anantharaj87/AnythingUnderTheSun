@@ -15,7 +15,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-export default function EditPatientDialog({open, dialogheader, selectedPatients, handleClose}) {
+export default function MergePatientsDialog({open, dialogheader, selectedPatients, handleClose}) {
 
 //console.log(open);
 //console.log(handleClose);

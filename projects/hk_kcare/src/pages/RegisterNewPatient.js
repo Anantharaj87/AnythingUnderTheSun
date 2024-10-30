@@ -126,7 +126,7 @@ export default function RegisterNewPatient({newPatientInfo, setNewPatientInfo, g
 						<td>Sex: </td>
 						<td>
 							<select name="sex" onChange={(e) => updatePatientInfo(e)} onKeyDown={handleEnter}>
-								<option disabled value> -- select an option -- </option>
+								<option disabled selected value> -- select an option -- </option>
 								<option value="MALE">Male</option>
 								<option value="FEMALE">Female</option>
 								<option value="THIRDGENDER">ThirdGender</option>

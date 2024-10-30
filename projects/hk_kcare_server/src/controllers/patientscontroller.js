@@ -10,14 +10,12 @@ async function findPatient(name, age, dob, sex) {
     return await Patient.findOne({name: name, age: age, sex: sex});
   } else {
 
-  //const s = '01-01-1970Z';
-  //const d = new Date(s);
-  //console.log(d);
-
-
-
     return await Patient.findOne({name: name, dob: new Date(dob), sex: sex});
   }
+}
+
+async function findPatientByID(id) {
+    return await Patient.findOne({_id: id});
 }
 
 async function lastPatient() {
@@ -49,6 +47,28 @@ async function addPatient(name, age, dob, sex, phno) {
         return await Promise.resolve(findrecord);
   }
 }
+
+async function editPatient(editedpatient) {
+
+  const findrecord = await findPatientByID(editedpatient._id);
+
+  if (findrecord == null) {
+        const lastPatients = await lastPatient();
+
+	var pid = 1;
+
+        if (lastPatients.length != 0) {
+		pid = lastPatients[0].p_id + 1            
+        }
+
+	return await Patient.create({name: editedpatient.name, age: editedpatient.age, dob: new Date(dob), sex: editedpatient.sex, phno: editedpatient.phno, p_id: pid});
+
+  } else {
+	return await Patient.findOneAndUpdate({_id: editedpatient._id}, editedpatient, {upsert: true});
+  }
+}
+
+
 
 async function deletePatients(patientIds) {
 	return await Patient.deleteMany({ _id: { $in: patientIds } });
@@ -109,3 +129,24 @@ console.log(req.body);
     res.status(400).send("Add patient failed");
   }
 });
+
+exports.edit_patient = asyncHandler(async (req, res, next) => {
+
+console.log(req.body);
+
+  if (req.body && req.body._id && req.body._id != "") {
+
+ editPatient(req.body).then((patient) => {
+      res.send(patient);
+    }).catch(err => {
+	console.log(err);
+      res.status(500).send('Couldnot get data from MongoDB:')
+}
+    );
+
+  } else {
+    res.status(400).send("Edit patient failed");
+  }
+});
+
+

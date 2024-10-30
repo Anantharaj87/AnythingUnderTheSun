@@ -23,15 +23,28 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 
         }
 
+	async function editPatient(editedpatient) {
+		
+                return await fetch(getServerBaseURL() + "/patients/edit", {
+                  method: "post",
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(editedpatient)
+                })
+                .then( (response) => { 
+                   return response
+                });
+
+        }
+
 	const onEditClick = (e) => {
+		e.preventDefault();
+
 		//console.log(getServerBaseURL());
 		//console.log(e);
-
 		//console.log(selectedPatients.current);
-
-		//handleOpenEditDialog();
-
-		e.preventDefault();
 
 		handleOpenEditDialog();
 	}
@@ -43,12 +56,12 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 	}
 
 	const onDeleteClick = (e, pa) => {
+		e.preventDefault();
+
 		console.log(e);
 		console.log(pa);
-		//e.preventDefault();
+				
 		handleOpenDeleteDialog();
-
-		e.preventDefault();
 	}
 
 
@@ -105,8 +118,8 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 		console.log("closed " + JSON.stringify(choice));
 		setOpenEditDialog(false);
 
-		/*if (choice == true) {
-			editPatient().then((response) => {
+		if (choice) {
+			editPatient(choice).then((response) => {
 				console.log(response);
 
 				if (response.status == 200) {
@@ -115,7 +128,7 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 					RefreshPatients();
 				}
 				}).catch(err =>	console.log(err));
-		}*/
+		}
 	};
 
 
