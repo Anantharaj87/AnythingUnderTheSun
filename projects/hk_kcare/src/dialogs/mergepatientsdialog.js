@@ -13,17 +13,17 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 export default function MergePatientsDialog({open, dialogheader, selectedPatients, handleClose}) {
 
-//console.log(open);
-//console.log(handleClose);
-//console.log(selectedPatients.current);
-
-//console.log(dayjs('2022-04-17'));
-
- const [id, setID] = useState('');
+/* const [id, setID] = useState('');
  const [name, setName] = useState('');
  const [dob, setDOB] = useState(null);
  const [sex, setSex] = useState('');
@@ -53,18 +53,17 @@ useEffect(() => {
 	console.log(phno);
 
   }, [open]);
-
-
-
-useEffect(() => {
-	console.log(dob);
-}, [dob]);
-
-/*
-useEffect(() => {
-	alert("opendeletedialog");	
-}, []);
 */
+
+ const [mergeCandidateID, setMergeCandidateID] = useState("")
+
+  const onOptionChange = e => {
+    console.log(e.target.value);
+    setMergeCandidateID(e.target.value);
+  }
+
+
+
   return (
     <React.Fragment>
       <Dialog
@@ -77,57 +76,52 @@ useEffect(() => {
           {dialogheader}
         </DialogTitle>
         <DialogContent>
-          <TextField value={name}
-		  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-		    setName(event.target.value);
-			console.log(name);
-		  }} />
-
-	    <LocalizationProvider dateAdapter={AdapterDayjs}>
-	      <DemoContainer components={['DatePicker', 'DatePicker']}>
-		
-		<DatePicker
-		  label="Controlled picker"
-		  value={dob}
-		  onChange={(newValue) => {
-				setDOB(newValue);
-				console.log(newValue.format('YYYY-MM-DD'));
-				}
-			}
-		/>
-	      </DemoContainer>
-	    </LocalizationProvider>
-
-	<Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={sex}
-          label="Sex"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-		    setSex(event.target.value);
-			console.log(sex);
-		  }}
-        >
-          <MenuItem value={'MALE'}>MALE</MenuItem>
-          <MenuItem value={'FEMALE'}>FEMALE</MenuItem>
-          <MenuItem value={'TRANSGENDER'}>TRANSGENDER</MenuItem>
-        </Select>
-	
-	<TextField value={phno}
-		  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-		    setPhno(event.target.value);
-			console.log(phno);
-		  }} />
+          <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+	    <TableCell>Target</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Age</TableCell>
+            <TableCell align="right">DOB</TableCell>
+            <TableCell align="right">Sex</TableCell>
+            <TableCell align="right">Phone No.</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {selectedPatients.current.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+		        <input
+			type="radio"
+			name="mergecandidate"
+			value={row.p_id}
+			onChange={onOptionChange}
+			/>
+              </TableCell>
+		<TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.age}</TableCell>
+              <TableCell align="right">{row.dob}</TableCell>
+              <TableCell align="right">{row.sex}</TableCell>
+              <TableCell align="right">{row.phno}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
 
         </DialogContent>
         <DialogActions>
           <Button onClick={(e) => {
 			
-			if (dob.isValid()) {
-				handleClose(e, {_id: id, name: name, dob: dob.format('YYYY-MM-DD'), sex: sex, phno: phno});
-			} else {
-				handleClose(e, {_id: id, name: name, sex: sex, phno: phno});
-			}
+			
+				handleClose(e, mergeCandidateID);
+			
 		}
 	} autoFocus>
             Yes

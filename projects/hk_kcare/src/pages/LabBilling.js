@@ -13,7 +13,7 @@ function LabBilling(props) {
 
 	const [parameterData, setParameterData] = useState(props.billinginfo.billabletests);
 	const [childKey, setChildKey] = useState({id0: 0, id1: 1, id2: 2});
-	const [patientInfo, setPatientInfo] = useState({name: "", sex: "", age: ""});
+	const [patientInfo, setPatientInfo] = useState({name: "", sex: "", age: "", p_id: ''});
 	const [visitInfo, setVisitInfo] = useState({sampleno: "", opno: ""});
 
 	const handleChange = (e, unitname) => {
@@ -72,6 +72,26 @@ function LabBilling(props) {
             	.filter((item, index, arr) => item.billable && item.billable !== "" && item.billable !== null && item.billable === "YES");
 	}
 	
+	function getServerBaseURL() {
+	  return window.location.protocol + "//" + window.location.hostname + ":4000";
+	}
+
+	async function addBill(billdetails) {
+		
+                return await fetch(getServerBaseURL() + "/bills/add", {
+                  method: "post",
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(billdetails)
+                })
+                .then( (response) => { 
+                   return response
+                });
+
+        }
+
 	const onClick = (e, pa) => {
 		console.log('paramData', parameterData)
 		console.log(getBillableItems().length);
@@ -84,6 +104,24 @@ function LabBilling(props) {
 			
 			saveAs(blob, timeParams.fnprefix + "_" + visitInfo.sampleno + "_" + visitInfo.opno + "_" + patientInfo.name + "_LABBILL" + ".json",); */
 		
+
+
+			var labbillrecord = Object.assign({p_id: patientInfo.p_id}, visitInfo, {"datetime": timeParams.datetime, "fnprefix": timeParams.fnprefix, "billno": timeParams.billno});
+			labbillrecord.billables = getBillableItems();
+
+			console.log(labbillrecord);
+
+			addBill(labbillrecord).then((response) => {
+				console.log(response);
+
+				if (response.status == 200) {
+					//selectedPatients.current = [];
+
+					//RefreshPatients();
+				}
+				}).catch(err =>	console.log(err));
+
+
 
 			const printElement = ReactDOMServer.renderToString(<PrintableBillingTable theadData={["Investigation", "Price"]} billables={getBillableItems()} patientInfo={Object.assign(patientInfo, visitInfo)} timeParams={timeParams}/>);
 
@@ -116,10 +154,11 @@ function LabBilling(props) {
 
 	const updatePatientInfoCallback = (pinfo) => {
 
+		
 		if (pinfo != null) {
-			setPatientInfo({name: pinfo.name.toUpperCase(), sex: pinfo.sex.toUpperCase(), age: pinfo.age})
+			setPatientInfo({name: pinfo.name.toUpperCase(), sex: pinfo.sex.toUpperCase(), age: pinfo.age, p_id: pinfo.p_id})
 		} else {
-			setPatientInfo({name: "", sex: "", age: ""});
+			setPatientInfo({name: "", sex: "", age: "", p_id: pinfo.p_id});
 		}
 	}
 

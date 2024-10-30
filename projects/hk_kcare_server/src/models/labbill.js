@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const billableSchema = new mongoose.Schema({
   cost: Number,
   unitname: String,
-  billable: Boolean
+  billable: String
 });
 
 const labbillSchema = new mongoose.Schema({

@@ -68,8 +68,10 @@ console.log(req.body);
   if (req.body && req.body.p_id && req.body.p_id != "" && req.body.datetime && req.body.datetime != "" && req.body.billno && req.body.billno != "" && req.body.billables && req.body.billables.length > 0) {
 
  addBill(req.body.p_id, req.body.datetime, req.body.billno, req.body.billables).then((bill) => {
-      res.send(bill);
+	console.log(bill);      
+	res.send(bill);
     }).catch(err => {
+	console.log(err);
       res.status(500).send('Couldnot get data from MongoDB:')
 }
     );

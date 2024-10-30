@@ -2,6 +2,7 @@ import './PatientList.css';
 import React, { useState, useEffect, useRef } from 'react';
 import ConfirmDialog from "../dialogs/confirmdialog";
 import EditPatientDialog from "../dialogs/editpatientdialog";
+import MergePatientsDialog from "../dialogs/mergepatientsdialog";
 
 export default function PatientList({theadData, allpatients, getServerBaseURL, RefreshPatients}) {
 
@@ -15,7 +16,39 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify(selectedPatients.current.map(a => a._id))
+                  body: JSON.stringify(selectedPatients.current.map(a => a.p_id))
+                })
+                .then( (response) => { 
+                   return response
+                });
+
+        }
+
+	async function mergePatients(dest) {
+
+		var payload = {};
+		payload.replaceids = selectedPatients.current.filter(id => {
+			console.log(id.p_id + ' ' + dest);
+ 
+			if (id.p_id == Number(dest)) {
+				return false;
+			} else {
+				return true;
+			}
+		}).map(a => a.p_id);
+
+		payload.destid = Number(dest);
+		
+
+		console.log(payload);
+
+                return await fetch(getServerBaseURL() + "/patients/merge", {
+                  method: "post",
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
                 })
                 .then( (response) => { 
                    return response
@@ -50,16 +83,18 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 	}
 
 	const onMergeClick = (e, pa) => {
-		console.log(e);
-		console.log(pa);
 		e.preventDefault();
+		//console.log(e);
+		//console.log(pa);
+
+		handleOpenMergeDialog();
 	}
 
 	const onDeleteClick = (e, pa) => {
 		e.preventDefault();
 
-		console.log(e);
-		console.log(pa);
+		//console.log(e);
+		//console.log(pa);
 				
 		handleOpenDeleteDialog();
 	}
@@ -132,6 +167,32 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 	};
 
 
+	const [openmergedialog, setOpenMergeDialog] = React.useState(false);
+
+
+	const handleOpenMergeDialog = () => {
+		console.log("opened");
+		setOpenMergeDialog(true);
+	};
+
+	const handleCloseMergeDialog = (e, choice) => {
+		console.log("closed " + JSON.stringify(choice));
+		setOpenMergeDialog(false);
+
+		if (choice) {
+			mergePatients(choice).then((response) => {
+				console.log(response);
+
+				if (response.status == 200) {
+					selectedPatients.current = [];
+
+					RefreshPatients();
+				}
+				}).catch(err =>	console.log(err));
+		}
+	};
+
+
     return (
     
 	<form className="container" style={{fontSize: 14}}>
@@ -139,6 +200,7 @@ export default function PatientList({theadData, allpatients, getServerBaseURL, R
 
 			<ConfirmDialog open={opendeletedialog} dialogheader="Confirm" dialogtext="Do you want to delete records?" handleClose={handleCloseDeleteDialog} />
 			<EditPatientDialog open={openeditdialog} dialogheader="Edit" selectedPatients={selectedPatients} handleClose={handleCloseEditDialog} />
+			<MergePatientsDialog open={openmergedialog} dialogheader="Merge" selectedPatients={selectedPatients} handleClose={handleCloseMergeDialog} />
 
 			<table className="table table-sm">
 				<tbody>

@@ -1,4 +1,6 @@
 const Patient = require('../models/patient.js');
+const LabBill = require('../models/labbill.js');
+const LabReport = require('../models/labreport.js');
 const asyncHandler = require("express-async-handler");
 
 async function findPatients(inpname) {
@@ -71,11 +73,17 @@ async function editPatient(editedpatient) {
 
 
 async function deletePatients(patientIds) {
-	return await Patient.deleteMany({ _id: { $in: patientIds } });
+	await LabBill.deleteMany({ p_id: { $in: patientIds } });
+	await LabReport.deleteMany({ p_id: { $in: patientIds } });
+
+	return await Patient.deleteMany({ p_id: { $in: patientIds } });
 }
 
-async function mergePatients(tobereplaced_p_ids, dest_p_id) {
+async function mergePatients(replaceids, destid) {
+	await LabBill.updateMany({p_id: { $in: replaceids }}, {"$set":{p_id: destid}});
+	await LabReport.updateMany({p_id: { $in: replaceids }}, {"$set":{p_id: destid}});
 
+	return await Patient.deleteMany({ p_id: { $in: replaceids } });
 }
 
 exports.patients_list = asyncHandler(async (req, res, next) => {
@@ -109,7 +117,22 @@ res.status(400).send("Delete patients failed");
 });
 
 exports.merge_patients = asyncHandler(async (req, res, next) => {
-  res.send("Merging patients");
+  console.log(req.body);
+
+  if (req.body && req.body.replaceids && req.body.replaceids.length > 0 && req.body.destid && req.body.destid != '') {
+
+   mergePatients(req.body.replaceids, req.body.destid).then((res) => {
+	      res.send('success');
+	    }).catch(err => {
+		console.log(err);
+	      res.status(500).send('Couldnot get data from MongoDB:')
+	}
+    );
+
+  } else {
+    res.status(400).send("Merge patients failed");
+  }
+
 });
 
 exports.add_patient = asyncHandler(async (req, res, next) => {
